@@ -31,6 +31,6 @@ public class RegisterServlet extends HttpServlet{
         }
         userDao.addNewUser(user);
         resp.sendRedirect("login.jsp");
-        
+
     }
 }

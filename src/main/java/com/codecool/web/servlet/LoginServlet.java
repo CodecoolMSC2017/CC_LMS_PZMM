@@ -18,10 +18,14 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         if(email.equals("")|| password.equals("")){
+            resp.sendRedirect("login.jsp");
+            //alert
             return;
         }
         UserDaoImpl userDao = new UserDaoImpl();
         if(!userDao.isEmailExists(email)){
+            resp.sendRedirect("index.jsp");
+            //alert
             return;
         }
         User user = new User(email,password);
