@@ -8,8 +8,9 @@
 <body>
 
 <div class="pageHeader">
-<img src="lezli.jpg" >
+<img class="logo" src="lezli.jpg" >
 <a href="index.jsp">CunFuss</a>
+<img class="dwi" src="dwi.png" >
 </div>
 
 <div class="nav">
