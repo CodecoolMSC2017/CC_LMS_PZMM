@@ -28,8 +28,6 @@ public class LoginServlet extends HttpServlet {
         user.setLogedIn(true);
         HttpSession session = req.getSession();
         session.setAttribute("isLoggedIn",true);
-        userDao.addNewUser(user);
-
         resp.sendRedirect("index.jsp");
     }
 }
