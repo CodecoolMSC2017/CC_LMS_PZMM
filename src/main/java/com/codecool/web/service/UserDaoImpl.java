@@ -16,6 +16,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void addNewUser(User newUser) {
+        users.add(newUser);
+    }
+
+    @Override
     public boolean isEmailExists(String email) {
         for (User user :users) {
             if (user.getEmail().equals(email)){
@@ -36,12 +41,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
-
+    public void updateUser(User user, String toUpdate, Object newData) {
+        if (toUpdate.equals("name")) {
+            updateName(user, newData);
+        } else if (toUpdate.equals("email")) {
+            updateEmail(user, newData);
+        } else if (toUpdate.equals("password")) {
+            updatePassword(user, newData);
+        } else if (toUpdate.equals("gender")) {
+            updateGender(user, newData);
+        } else if (toUpdate.equals("birth")) {
+            updateBrith(user, newData);
+        }
     }
 
     @Override
     public void deleteUser(User user) {
-
+        users.remove(user);
     }
 }
