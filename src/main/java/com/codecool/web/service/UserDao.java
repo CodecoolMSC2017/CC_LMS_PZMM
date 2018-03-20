@@ -1,13 +1,14 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.User;
+import com.codecool.web.model.UserList;
 
 import java.util.List;
 
 public interface UserDao {
 
-    UserList userList = UserList.getInstance();
-    List<User> users = userList.getUsers;
+    UserList userList = UserList.getUserListInstance();
+    List<User> users = userList.getUsers();
 
     public List<User> getAllUsers();
     public User getUserById(int id);
