@@ -1,0 +1,77 @@
+*{
+padding : 0;
+margin : 0;
+border : 0;
+}
+body{
+background-attachment : fixed;
+background-size : 100% auto;
+background-color : #e0e0d1;
+}
+.blended_grid{
+display : block;
+width : 1000px;
+overflow : auto;
+margin : 50px auto 0 auto;
+}
+.pageHeader{
+background-color : #99ccff;
+float : left;
+clear : none;
+height : 100px;
+width : 1000px;
+}
+.pageLeftMenu{
+margin: 5px;
+background-color : #ffffff;
+float : left;
+clear : none;
+height : 600px;
+width : 15%;
+}
+.pageContent{
+margin: 5px;
+background-color : #ffffff;
+float : left;
+clear : none;
+height : 600px;
+width : 67%;
+}
+.pageRightMenu{
+margin: 5px;
+background-color : #ffffff;
+float : right;
+clear : none;
+height : 600px;
+width : 15% ;
+}
+.pageFooter{
+position: fixed;
+bottom: 0;
+background-color : #99ccff;
+float : center;
+clear : none;
+height : 5%;
+width : 77.6%;
+}
+
+.topnav {
+    position: center;
+    background-color:red;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
