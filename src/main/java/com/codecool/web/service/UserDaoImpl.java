@@ -8,8 +8,8 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    UserList userList = UserList.getUserListInstance();
-    List<User> users = userList.getUsers();
+    private UserList userList = UserList.getUserListInstance();
+    private List<User> users = userList.getUsers();
 
     @Override
     public List<User> getAllUsers() {
