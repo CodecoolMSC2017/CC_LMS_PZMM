@@ -3,6 +3,7 @@ package com.codecool.web.service;
 import com.codecool.web.model.User;
 import com.codecool.web.model.UserList;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -40,19 +41,24 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    @Override
-    public void updateUser(User user, String toUpdate, Object newData) {
-        if (toUpdate.equals("name")) {
-            updateName(user, newData);
-        } else if (toUpdate.equals("email")) {
-            updateEmail(user, newData);
-        } else if (toUpdate.equals("password")) {
-            updatePassword(user, newData);
-        } else if (toUpdate.equals("gender")) {
-            updateGender(user, newData);
-        } else if (toUpdate.equals("birth")) {
-            updateBrith(user, newData);
-        }
+    public void updateBrith(User user, Object newData) {
+        user.setBirth((Date) newData);
+    }
+
+    public void updateGender(User user, Object newData) {
+        user.setGender((String) newData);
+    }
+
+    public void updatePassword(User user, Object newData) {
+        user.setPassword((String) newData);
+    }
+
+    public void updateEmail(User user, Object newData) {
+        user.setEmail((String) newData);
+    }
+
+    public void updateName(User user, Object newName) {
+        user.setName((String) newName);
     }
 
     @Override
