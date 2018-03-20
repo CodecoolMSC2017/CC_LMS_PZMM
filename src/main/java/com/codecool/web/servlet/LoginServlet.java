@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/login")
@@ -18,16 +19,16 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         if(email.equals("")|| password.equals("")){
             return;
-            //WrongEmail or Password EXCEPTION
         }
-        // Check for existence of email
         UserDaoImpl userDao = new UserDaoImpl();
         if(!userDao.isEmailExists(email)){
             return;
-            //WrongEmail Exception
         }
         User user = new User(email,password);
         user.setLogedIn(true);
+        HttpSession session = req.getSession();
+        session.setAttribute("isLoggedIn",true);
+        userDao.addNewUser(user);
 
         resp.sendRedirect("index.jsp");
     }
