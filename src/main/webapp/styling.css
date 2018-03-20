@@ -7,71 +7,126 @@ body{
 background-attachment : fixed;
 background-size : 100% auto;
 background-color : #e0e0d1;
+animation-name: background;
+animation-duration: 30s;
+animation-iteration-count:infinite;
 }
-.blended_grid{
-display : block;
-width : 1000px;
-overflow : auto;
-margin : 50px auto 0 auto;
+
+
+@keyframes background {
+    0% {background-color: #e0e0d1;}
+    50% {background-color: #3399ff;}
+    100% {background-color: #e0e0d1;}
 }
+
+
 .pageHeader{
-background-color : #99ccff;
-float : left;
-clear : none;
-height : 100px;
-width : 1000px;
-}
-.pageLeftMenu{
-margin: 5px;
-background-color : #ffffff;
-float : left;
-clear : none;
-height : 600px;
-width : 15%;
-}
-.pageContent{
-margin: 5px;
-background-color : #ffffff;
-float : left;
-clear : none;
-height : 600px;
-width : 67%;
-}
-.pageRightMenu{
-margin: 5px;
-background-color : #ffffff;
-float : right;
-clear : none;
-height : 600px;
-width : 15% ;
-}
-.pageFooter{
-position: fixed;
-bottom: 0;
-background-color : #99ccff;
-float : center;
-clear : none;
-height : 5%;
-width : 77.6%;
+    background: linear-gradient(to bottom right, #99ccff 0%, #3399ff 95%);
+    position:relative;
+    clear : none;
+    height : 100px;
+    width : 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Lobster;
+    font-size: 60px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    color:#3295ff;
+    text-shadow: 0 0 3px black, 0 0 5px #2a8df7;
 }
 
-.topnav {
-    position: center;
-    background-color:red;
+.pageHeader a {
+    text-decoration:inherit;
+    color:inherit;
 }
 
-/* Style the topnav links */
-.topnav a {
-    float: left;
+.pageHeader img{
+    position:relative;
+    top:10%;
+    left:1%;
+    border-radius:25px;
+    width: 80px;
+    height: 90px;
+    animation-name: slide;
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+
+@keyframes slide {
+   0% {left:1%; top:10%}
+   50% {left:15%; top:10%}
+   100% {left:1%; top:10%}
+}
+
+.nav {
+    background-color:lightblue;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav input {
+    background-color:#f70909;
+    float:right;
+    display:inline-block;
+}
+
+.nav a {
     display: block;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-weight:bold;
 }
 
-/* Change color on hover */
-.topnav a:hover {
-    background-color: #ddd;
+.nav a:hover {
+    background-color: #9bcddd;
     color: black;
 }
+
+.wrapper div{
+    border-radius:5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color:#e5efff;
+}
+
+h3 {
+    background:linear-gradient(to bottom right, #99ccff 35%, #3399ff 95%);
+    border-radius:5px;
+}
+
+.pageLeftMenu{
+    display: inline-block;
+    margin: 5px;
+    clear : none;
+    height : 40vh;
+    width : 20%;
+}
+
+.pageContent{
+    display: inline-block;
+    margin: 5px;
+    clear : none;
+    height : 1600px;
+    width : 57%;
+}
+
+.pageRightMenu{
+    display: inline-block;
+    margin: 5px;
+    float : right;
+    clear : none;
+    height : 40vh;
+    width : 20% ;
+}
+
+.pageFooter{
+    text-align:center;
+    position: fixed;
+    bottom: 0;
+    background:linear-gradient(to bottom right, #99ccff 35%, #3399ff 95%);
+    clear : none;
+    height : 3%;
+    width : 100%;
+}
+
