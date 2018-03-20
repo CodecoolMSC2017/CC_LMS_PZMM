@@ -7,10 +7,8 @@ import java.util.List;
 
 public interface UserDao {
 
-    UserList userList = UserList.getUserListInstance();
-    List<User> users = userList.getUsers();
-
     public List<User> getAllUsers();
+    public boolean isEmailExists(String email);
     public User getUserByEmail(String email);
     public void updateUser(User user);
     public void deleteUser(User user);
