@@ -90,4 +90,13 @@ public class User {
             Objects.equals(password, user.password);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+            "name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", role='" + role + '\'' +
+            '}';
+    }
 }
