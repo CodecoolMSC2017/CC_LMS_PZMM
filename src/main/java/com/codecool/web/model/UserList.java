@@ -1,6 +1,7 @@
 package com.codecool.web.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserList {
     List<User> users;
