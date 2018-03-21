@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet{
@@ -19,9 +20,6 @@ public class RegisterServlet extends HttpServlet{
         String email = req.getParameter("email");
         String role = req.getParameter("role");
         String password = req.getParameter("password");
-        if (name.equals("") || email.equals("") || role.equals("") || password.equals("")) {
-            return;
-        }
 
         User user = new User(name,email,role,password);
 
