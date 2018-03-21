@@ -1,6 +1,9 @@
 <%@ page import="java.util.List,com.codecool.web.service.UserDaoImpl,com.codecool.web.model.User"%>
 <html>
-<form action="register" method="POST">
+<head>
+  <script src="RegisterError.js"></script>
+</head>
+<form action="register" onsubmit="return registerValidate();" method="POST">
   Name:<br>
   <input type="text" name="name" placeholder="Leslie Nielsen"><br>
   Email:<br>
