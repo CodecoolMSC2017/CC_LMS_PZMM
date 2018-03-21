@@ -3,10 +3,11 @@ function registerValidate() {
   var email = document.getElementById("email").value;
   var role = document.getElementById("role").value;
   var password = document.getElementById("password").value;
-  if(name == null || email == null || role == null || password == null)
+  console.log(name,email,role,password);
+  if(name == "" || email == "" || role == null || password == "")
   {
     alert("Fill every field please!");
-    window.location.replace("register.jsp");
+    //window.location.replace("register.jsp");
     return false;
   }
   return true;
