@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="styling.css">
 <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <jsp:include page="/curriculum" />
+    <jsp:include page="/curriculumList" />
 <title>Home</title>
 </head>
 <body>
@@ -38,7 +38,9 @@
 
 <div class="pageContent">
 <h3>Content</h3>
-    <c:out value = "${test}"/>
+    <c:forEach items="${curriculums}" var="curriculum">
+        <a href="${curriculumLink}"></a>${curriculum}.name<br>
+    </c:forEach>
 </div>
 
 <div class="pageRightMenu">
