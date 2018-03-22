@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -34,6 +36,7 @@
 
 <div class="pageContent">
 <h3>Content</h3>
+    <c:out value = "${test}"/>
 </div>
 
 <div class="pageRightMenu">
