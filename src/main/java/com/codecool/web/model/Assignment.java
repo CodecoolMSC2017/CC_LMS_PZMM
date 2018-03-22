@@ -9,7 +9,6 @@ public class Assignment {
     private String title;
     private int maxScore;
     private boolean isDone;
-    
     private Date dueDate;
 
     public Assignment(HashMap<String, List<String>> assignment, String title, int maxScore ,boolean isDone, Date dueDate) {
@@ -48,11 +47,13 @@ public class Assignment {
         this.title = title;
     }
 
+
     public void setDone(boolean done) {
         isDone = done;
     }
 
     public void setDueDate(Date dueDate) {
+
         this.dueDate = dueDate;
     }
 
