@@ -19,11 +19,11 @@ public class SetCurriculumServlet extends HttpServlet {
         User loggedInUser = (User) session.getAttribute("loggedUser");
         if (loggedInUser.getRole().equals("student")) {
             Curriculum curriculum = (Curriculum) req.getAttribute("selectedCurriculum");
-            req.setAttribute("curriculum", curriculum);
+            session.setAttribute("curriculum", curriculum);
             req.getRequestDispatcher("curriculum.jsp").forward(req, resp);
         } else {
             Curriculum curriculum = (Curriculum) req.getAttribute("selectedCurriculum");
-            req.setAttribute("curriculum", curriculum);
+            session.setAttribute("curriculum", curriculum);
             req.getRequestDispatcher("curriculumedit.jsp").forward(req, resp);
         }
     }
