@@ -1,6 +1,14 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.Assignment;
+import com.codecool.web.model.Curriculum;
+
+import java.util.List;
+
 public class CurriculumDaoImpl implements CurriculumDao {
+
+    private CurriculumList cl = new CurriculumList();
+    private List<Curriculum> curriculums = cl.getInstance();
     
     @Override
     public List<Curriculum> getAllCurriculums() {
