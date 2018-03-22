@@ -1,5 +1,10 @@
 package com.codecool.web.service;
 
+import com.codecool.web.model.Assignment;
+import com.codecool.web.model.Curriculum;
+
+import java.util.List;
+
 public interface CurriculumDao {
 
     public List<Curriculum> getAllCurriculums();
