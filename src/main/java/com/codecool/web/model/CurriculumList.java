@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CurriculumList {
     private List<Curriculum> curriculums;
-    
+
     private CurriculumList() {
         curriculums = new ArrayList<>();
     }
@@ -16,4 +16,7 @@ public class CurriculumList {
         return curriculumList;
     }
 
+    public List<Curriculum> getCurriculums() {
+        return curriculums;
+    }
 }
