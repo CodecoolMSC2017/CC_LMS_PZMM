@@ -7,12 +7,15 @@ import java.util.List;
 public class Assignment {
     private HashMap<String, List<String>> assignment;
     private String title;
+    private int maxScore;
     private boolean isDone;
+    
     private Date dueDate;
 
-    public Assignment(HashMap<String, List<String>> assignment, String title, boolean isDone, Date dueDate) {
+    public Assignment(HashMap<String, List<String>> assignment, String title, int maxScore ,boolean isDone, Date dueDate) {
         this.assignment = assignment;
         this.title = title;
+        this.maxScore = maxScore;
         this.isDone = isDone;
         this.dueDate = dueDate;
     }
@@ -23,6 +26,10 @@ public class Assignment {
 
     public String getTitle() {
         return title;
+    }
+
+    public int getMaxScore() {
+        return maxScore;
     }
 
     public boolean isDone() {
@@ -51,7 +58,8 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return "Assignment(" + "assignment: " + assignment + " title: " + title + '\'' +
+        return "Assignment(" + "assignment: " + assignment + ", title: " + title +
+            ", Maximum score: " + maxScore +
             ", isDone=" + isDone +
             ", dueDate=" + dueDate +
             ')';
