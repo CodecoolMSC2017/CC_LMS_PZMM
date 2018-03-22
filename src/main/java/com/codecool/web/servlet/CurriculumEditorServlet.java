@@ -25,5 +25,6 @@ public class CurriculumEditorServlet extends HttpServlet {
 
         req.setAttribute("selectedCurriculum", selectedCurriculum);
         req.getRequestDispatcher("curriculum.jsp").forward(req, resp);
+        resp.sendRedirect("curriculum.jsp");
     }
 }
