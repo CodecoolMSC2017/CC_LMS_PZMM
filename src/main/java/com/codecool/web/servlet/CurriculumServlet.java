@@ -26,6 +26,7 @@ public class CurriculumServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user =(User) req.getSession().getAttribute("loggedUser");
+        curriculums.add(new Curriculum("teszt","12345",true));
 
         if (user.getRole().equals("student")) {
             req.setAttribute("curriculumLink","/curriculum");
