@@ -39,7 +39,7 @@
 <div class="pageContent">
 <h3>Content</h3>
     <c:forEach items="${curriculums}" var="curriculum">
-        <a href="${curriculumLink}"></a><c:out value ="${curriculum}.title"/><br>
+        <a href="${curriculumLink}"><c:out value ="${curriculum.title}"/></a><br>
     </c:forEach>
 </div>
 
