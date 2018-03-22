@@ -24,7 +24,6 @@
       <td><a href="userlist">Userlist</a></td>
     </tr>
   </table>
-  <input type="submit" value="Log out" action="logout">
 </div>
 <br>
 

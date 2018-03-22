@@ -26,7 +26,8 @@
     <td><a href="userlist">Userlist</a></td>
 </tr>
 </table>
-<input type="submit" value="Log out" action="logout">
+<form action="logout" method="post"><input type="submit" value="Log out" ></form>
+
 </div>
 <br>
 

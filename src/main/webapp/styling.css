@@ -114,6 +114,7 @@ h3 {
 .pageLeftMenu{
     display: inline-block;
     margin: 5px;
+    float:left;
     clear : none;
     height : 40vh;
     width : 20%;
