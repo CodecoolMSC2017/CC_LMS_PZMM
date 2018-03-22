@@ -32,9 +32,9 @@
     <div class="pageContent">
         <h3>Login</h3>
         <form class="login" action="login" method="post">
-            Name:<input type="text" name="email"><br>
+            Email:<input type="text" name="email"><br>
             Password:<input type="password" name="password"><br><br>
-            <input class="button" type="submit" value="Zsamo">
+            <input class="button" type="submit" value="Login">
         </form>
     </div>
 
