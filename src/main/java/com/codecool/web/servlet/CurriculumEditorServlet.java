@@ -19,13 +19,11 @@ public class CurriculumEditorServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Curriculum selectedCurriculum = (Curriculum) session.getAttribute("selectedCurriculum");
 
-        String title = req.getParameter("title");
-        String content = req.getParameter("content");
-        boolean isPublished = Boolean.parseBoolean(req.getParameter("isPublished"));
+        selectedCurriculum.setTitle(req.getParameter("title"));
+        selectedCurriculum.setContent(req.getParameter("content"));
+        selectedCurriculum.setPublished(Boolean.parseBoolean(req.getParameter("isPublished")));
 
-        Curriculum curriculum = new Curriculum(title, content, isPublished);
-
-        req.setAttribute("curriculum", curriculum);
+        req.setAttribute("selectedCurriculum", selectedCurriculum);
         req.getRequestDispatcher("curriculum.jsp").forward(req, resp);
     }
 }
