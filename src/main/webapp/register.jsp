@@ -48,6 +48,7 @@
       <input type="password" name="password" id="password"><br><br>
       <input type="submit" name="register" value="Register">
     </form>
+    <!--
     <%
     UserDaoImpl userDao = new UserDaoImpl();
     List<User> users = userDao.getAllUsers();
@@ -55,6 +56,7 @@
     out.print("<p>" + user + "</p><br>");
     }
     %>
+    -->
   </div>
 
 </div>
