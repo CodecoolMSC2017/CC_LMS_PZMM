@@ -21,12 +21,10 @@ public class SetCurriculumServlet extends HttpServlet {
             Curriculum curriculum = (Curriculum) req.getAttribute("selectedCurriculum");
             session.setAttribute("curriculum", curriculum);
             req.getRequestDispatcher("curriculum.jsp").forward(req, resp);
-            resp.sendRedirect("curriculumedit.jsp");
         } else {
             Curriculum curriculum = (Curriculum) req.getAttribute("selectedCurriculum");
             session.setAttribute("curriculum", curriculum);
             req.getRequestDispatcher("curriculumedit.jsp").forward(req, resp);
-            resp.sendRedirect("curriculumedit.jsp");
         }
     }
 }
