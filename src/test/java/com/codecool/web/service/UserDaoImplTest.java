@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoImplTest {
 
-    UserDaoImpl udi = new UserDaoImpl();
+    UserDao udi = new UserDaoImpl();
     List<User> users = udi.getAllUsers();
 
     @BeforeEach
