@@ -41,6 +41,7 @@
             <tr>
                 <td><h2>${curriculum.title}</h2></td>
                 <td><p>${curriculum.content}</p></td>
+                <td><p>${curriculum.isPublished}</p></td>
             </tr>
         </table>
     </div>
