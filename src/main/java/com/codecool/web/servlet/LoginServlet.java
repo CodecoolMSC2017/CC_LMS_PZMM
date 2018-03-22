@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
             //alert
             return;
         }
-        User user = new User(email,password);
+        User user = userDao.getUserByEmail(email);
         user.setLogedIn(true);
         HttpSession session = req.getSession();
         session.setAttribute("isLoggedIn",true);
