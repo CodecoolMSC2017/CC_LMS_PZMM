@@ -18,7 +18,7 @@ class CurriculumDaoImplTest {
 
     @BeforeEach
     void setUp() {
-        Assignment assignment = new Assignment(new HashMap<String, List<String>>(), "title", false, new Date());
+        Assignment assignment = new Assignment(new HashMap<String, List<String>>(), "title", 10, false, new Date());
         Curriculum curriculum = new Curriculum("This is the title.", "This is the content, bla bla bla.", false, assignment);
         curriculums.add(curriculum);
     }
