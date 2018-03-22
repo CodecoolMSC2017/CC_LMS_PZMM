@@ -10,5 +10,6 @@ function registerValidate() {
     //window.location.replace("register.jsp");
     return false;
   }
+  alert("Registration is successful!");
   return true;
 }
