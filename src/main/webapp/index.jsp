@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html"%>
+<%@ page import = "javax.servlet.RequestDispatcher" %>
 <!DOCTYPE html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -13,6 +15,9 @@
 <img class="logo" src="lezli.jpg" >
 <a href="index.jsp">CunFuss</a>
 <img class="dwi" src="dwi.png" >
+    <%
+        RequestDispatcher rd = request.getRequestDispatcher("/curriculum");
+    %>
 </div>
 
 <div class="nav">
