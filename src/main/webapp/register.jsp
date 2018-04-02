@@ -1,4 +1,5 @@
-<%@ page import="java.util.List,com.codecool.web.service.UserDaoImpl,com.codecool.web.model.User"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -46,13 +47,13 @@
       Password:<br>
       <input type="password" name="password" id="password"><br><br>
       <input type="submit" name="register" value="Register">
+
       <c:if test="${not empty error}">
-      <p style="color: red;"><c:out value="${error}"/></p>
+        <p style="color: red;"><c:out value="${error}"/></p>
       </c:if>
       <c:if test="${not empty info}">
-      <p><c:out value="${info}"/></p>
+        <p><c:out value="${info}"/></p>
       </c:if>
-
     </form>
   </div>
 
