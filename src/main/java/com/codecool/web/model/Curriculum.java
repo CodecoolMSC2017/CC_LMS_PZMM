@@ -4,20 +4,11 @@ public class Curriculum {
     private String title;
     private String content;
     private boolean isPublished;
-    private Assignment relatedAssignment;
-
-    public Curriculum(String title, String content, boolean isPublished, Assignment relatedAssignment) {
-        this.title = title;
-        this.content = content;
-        this.isPublished = isPublished;
-        this.relatedAssignment = relatedAssignment;
-    }
 
     public Curriculum(String title, String content, boolean isPublished) {
         this.title = title;
         this.content = content;
         this.isPublished = isPublished;
-        this.relatedAssignment = null;
     }
 
     public String getTitle() {
@@ -44,18 +35,12 @@ public class Curriculum {
         isPublished = published;
     }
 
-    public Assignment getRelatedAssignment() {
-        return relatedAssignment;
-    }
-
-    public void setRelatedAssignment(Assignment relatedAssignment) {
-        this.relatedAssignment = relatedAssignment;
-    }
-
     @Override
     public String toString() {
-        return "Curriculum(" +
-            "title: " + title + " content: " + content + " isPublished: " + isPublished + " relatedAssignment: "
-            + relatedAssignment + ')';
+        return "Curriculum{" +
+            "title='" + title + '\'' +
+            ", content='" + content + '\'' +
+            ", isPublished=" + isPublished +
+            '}';
     }
 }
