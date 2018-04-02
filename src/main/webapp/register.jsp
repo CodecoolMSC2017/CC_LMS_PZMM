@@ -50,8 +50,8 @@
       <c:if test="${not empty error}">
       <p style="color: red;">${error}</p>
       </c:if>
-      c:if test="${empty error}">
-      <p${info}</p>
+      <c:if test="${empty error}">
+      <p>${info}</p>
       </c:if>
 
     </form>
