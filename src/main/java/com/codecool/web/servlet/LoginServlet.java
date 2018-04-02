@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         if (loginService.login(email, password)) {
             User user = userService.getUserByEmail(email);
             req.getSession().setAttribute("user", user);
-            resp.sendRedirect("protected/profile");
+            resp.sendRedirect("protected/index.jsp");
         } else {
             req.setAttribute("error", "No such user in database!");
             req.getRequestDispatcher("login.jsp").forward(req, resp);

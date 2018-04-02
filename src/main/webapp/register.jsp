@@ -1,7 +1,6 @@
 <%@ page import="java.util.List,com.codecool.web.service.UserDaoImpl,com.codecool.web.model.User"%>
 <!DOCTYPE html>
 <head>
-  <script src="RegisterError.js"></script>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="login.css">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
@@ -50,7 +49,7 @@
       <c:if test="${not empty error}">
       <p style="color: red;"><c:out value="${error}"/></p>
       </c:if>
-      <c:if test="${empty error}">
+      <c:if test="${not empty info}">
       <p><c:out value="${info}"/></p>
       </c:if>
 
