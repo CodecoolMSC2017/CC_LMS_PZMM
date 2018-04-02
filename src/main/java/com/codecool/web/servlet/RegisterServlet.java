@@ -16,7 +16,7 @@ public class RegisterServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userService = (UserDao) req.getServletContext().getAttribute("userSerivce");
+        UserDao userService = (UserDao) req.getServletContext().getAttribute("userService");
 
         String name = req.getParameter("name");
         String email = req.getParameter("email");
