@@ -1,15 +1,13 @@
 package com.codecool.web.service;
 
-import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Curriculum;
-import com.codecool.web.model.CurriculumList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CurriculumDaoImpl implements CurriculumDao {
 
-    private CurriculumList cl = CurriculumList.getInstance();
-    private List<Curriculum> curriculums = cl.getCurriculums();
+    private List<Curriculum> curriculums = new ArrayList<>();
 
     @Override
     public List<Curriculum> getAllCurriculums() {
@@ -49,10 +47,5 @@ public class CurriculumDaoImpl implements CurriculumDao {
     @Override
     public void updateIsPublished(Curriculum curriculum, boolean isPublished) {
         curriculum.setPublished(isPublished);
-    }
-
-    @Override
-    public void updateAssignment(Curriculum curriculum, Assignment newAssignment) {
-        curriculum.setRelatedAssignment(newAssignment);
     }
 }
