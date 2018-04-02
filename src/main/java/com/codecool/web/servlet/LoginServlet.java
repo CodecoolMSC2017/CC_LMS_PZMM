@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("isLoggedIn",true);
         session.setAttribute("loggedUser",user);
-        resp.sendRedirect("index.jsp");
+        resp.sendRedirect("protected/index.jsp");
 
     }
 }
