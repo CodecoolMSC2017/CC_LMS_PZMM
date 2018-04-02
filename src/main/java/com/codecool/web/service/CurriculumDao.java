@@ -14,5 +14,4 @@ public interface CurriculumDao {
     public void updateCurriculumTitle(Curriculum curriculum, String newTitle);
     public void updateContent(Curriculum curriculum, String newContent);
     public void updateIsPublished(Curriculum curriculum, boolean isPublished);
-    public void updateAssignment(Curriculum curriculum, Assignment newAssignment);
 }
