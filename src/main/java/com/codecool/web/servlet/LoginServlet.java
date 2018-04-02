@@ -23,14 +23,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userDao = (UserDao) req.getServletContext().getAttribute("userService");
+        UserDao userService = (UserDao) req.getServletContext().getAttribute("userService");
         LoginService loginService = (LoginService) req.getServletContext().getAttribute("loginService");
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
         if (loginService.login(email, password)) {
-            User user = userDao.getUserByEmail(email);
+            User user = userService.getUserByEmail(email);
             req.getSession().setAttribute("user", user);
             resp.sendRedirect("protected/profile");
         } else {
