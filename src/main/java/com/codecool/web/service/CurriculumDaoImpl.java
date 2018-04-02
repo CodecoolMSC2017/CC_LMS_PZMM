@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CurriculumDaoImpl implements CurriculumDao {
 
-    private List<Curriculum> curriculums = new ArrayList<>();
+    private final List<Curriculum> curriculums = new ArrayList<>();
 
     @Override
     public List<Curriculum> getAllCurriculums() {
