@@ -4,9 +4,9 @@ import com.codecool.web.model.User;
 
 public final class LoginService {
 
-    private final UserDaoImpl userService;
+    private final UserDao userService;
 
-    public LoginService(UserDaoImpl userService) {
+    public LoginService(UserDao userService) {
         this.userService = userService;
     }
 
