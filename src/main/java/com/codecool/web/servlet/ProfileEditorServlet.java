@@ -33,7 +33,6 @@ public class ProfileEditorServlet extends HttpServlet {
 
         userService.updateRole(user, req.getParameter("role"));
 
-        req.getRequestDispatcher("profileeditor.jsp").forward(req, resp);
-        resp.sendRedirect("profile.jsp");
+        doGet(req, resp);
     }
 }
