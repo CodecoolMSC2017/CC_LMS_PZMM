@@ -34,7 +34,7 @@
         <h3>Edit Curriculum</h3>
         <form class="curriculumEditor" action="curriculumEditorServlet" method="post">
             Curriculum Title:<input type="text" name="title" value="${selectedCurriculum.title}"><br>
-            Curriculum Content:<textarea rows="4" cols="50" name ="content"><%=request.getParameter("selectedCurriculum.content")%></textarea>
+            Curriculum Content:<textarea rows="4" cols="50" name ="content">${selectedCurriculum.content}</textarea>
             <input class="button" type="submit" value="Edit">
         </form>
     </div>
