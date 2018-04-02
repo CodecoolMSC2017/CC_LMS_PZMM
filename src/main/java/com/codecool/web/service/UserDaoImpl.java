@@ -40,14 +40,15 @@ public class UserDaoImpl implements UserDao {
         boolean isLengthProper = false;
         for (int i = 0; i < pw.length(); i++) {
             char ch = pw.charAt(i);
+            if (pw.length() >= 8) {
+                isLengthProper = true;
+            }
             if (Character.isUpperCase(ch)) {
                 isUpperCase = true;
             } else if (Character.isLowerCase(ch)) {
                 isLowerCase = true;
             } else if (Character.isDigit(ch)) {
                 isDigit = true;
-            } else if (pw.length() >= 8) {
-                isLengthProper = true;
             }
         }
         if (isUpperCase && isLowerCase && isDigit && isLengthProper) {
