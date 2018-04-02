@@ -1,7 +1,6 @@
 package com.codecool.web.service;
 
 import com.codecool.web.model.User;
-import com.codecool.web.model.UserList;
 
 import java.util.ArrayList;
 import java.util.Date;
