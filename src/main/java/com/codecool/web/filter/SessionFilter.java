@@ -26,8 +26,8 @@ public final class SessionFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("loggedUser");
-        if (user == null) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
             resp.sendRedirect("../login.jsp");
         } else {
             chain.doFilter(req, resp);
