@@ -30,14 +30,18 @@
 
     <div class="editProfile">
         <h3>Edit your profile</h3>
-        <form class="profileEditor" action="profileEditorServlet" method="post">
+        <form class="profileEditor" action="profileeditor" method="post">
             <p>Name:<input type="text" name="name" value="${user.name}"></p>
             <p>Email:<input type="text" name="email" value="${user.email}" readonly></p>
+            <p>Role:
             <select name="role" id="role">
                     <option value="student">Student</option>
                     <option value="mentor">Mentor</option>
-                  </select><br>
+            </select><br></p>
             <input class="button" type="submit" value="Save">
+            <c:if test="${not empty error}">
+                <p style="color: red;"><c:out value="${error}"/></p>
+            </c:if>
         </form>
     </div>
 
