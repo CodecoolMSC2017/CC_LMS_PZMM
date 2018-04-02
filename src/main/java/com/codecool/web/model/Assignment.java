@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Assignment {
-    private HashMap<String, List<String>> assignment;
+    private HashMap<String, String> assignment;
     private String title;
     private int maxScore;
     private boolean isDone;
     private Date dueDate;
 
-    public Assignment(HashMap<String, List<String>> assignment, String title, int maxScore ,boolean isDone, Date dueDate) {
+    public Assignment(HashMap<String, String> assignment, String title, int maxScore ,boolean isDone, Date dueDate) {
         this.assignment = assignment;
         this.title = title;
         this.maxScore = maxScore;
@@ -19,7 +19,7 @@ public class Assignment {
         this.dueDate = dueDate;
     }
 
-    public HashMap<String, List<String>> getAssignment() {
+    public HashMap<String, String> getAssignment() {
         return assignment;
     }
 
@@ -39,7 +39,7 @@ public class Assignment {
         return dueDate;
     }
 
-    public void setAssignment(HashMap<String, List<String>> assignment) {
+    public void setAssignment(HashMap<String, String> assignment) {
         this.assignment = assignment;
     }
 
