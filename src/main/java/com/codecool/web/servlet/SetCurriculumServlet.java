@@ -16,15 +16,15 @@ public class SetCurriculumServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        User loggedInUser = (User) session.getAttribute("loggedUser");
+        User loggedInUser = (User) session.getAttribute("user");
         if (loggedInUser.getRole().equals("student")) {
             Curriculum curriculum = (Curriculum) req.getAttribute("selectedCurriculum");
             session.setAttribute("curriculum", curriculum);
-            req.getRequestDispatcher("curriculum.jsp").forward(req, resp);
+            req.getRequestDispatcher("protected/curriculum.jsp").forward(req, resp);
         } else {
             Curriculum curriculum = (Curriculum) req.getAttribute("selectedCurriculum");
             session.setAttribute("curriculum", curriculum);
-            req.getRequestDispatcher("curriculumedit.jsp").forward(req, resp);
+            req.getRequestDispatcher("protected/curriculumedit.jsp").forward(req, resp);
         }
     }
 }
