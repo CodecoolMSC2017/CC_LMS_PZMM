@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -35,12 +37,16 @@
             <p>Email:<input type="text" name="email" value="${user.email}" readonly></p>
             <p>Role:
             <select name="role" id="role">
-                    <option value="student">Student</option>
-                    <option value="mentor">Mentor</option>
+                <option selected disabled>${user.role}</option>
+                <option value="student">Student</option>
+                <option value="mentor">Mentor</option>
             </select><br></p>
             <input class="button" type="submit" value="Save">
             <c:if test="${not empty error}">
                 <p style="color: red;"><c:out value="${error}"/></p>
+            </c:if>
+            <c:if test="${not empty info}">
+                <p style="color: blue;"><c:out value="${info}"/></p>
             </c:if>
         </form>
     </div>
