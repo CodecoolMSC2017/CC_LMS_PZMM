@@ -23,9 +23,9 @@ public class UserDaoImpl implements UserDao {
             throw new InvalidRegistrationException();
         } else if (!validateEmailAddress(email)) {
             throw new InvalidEmailAddressException();
-        } else if (!validatePassword(email)) {
+        } else if (!validatePassword(password)) {
             throw new InvalidPasswordException();
-        } else if (!isEmailExists(email)) {
+        } else if (isEmailExists(email)) {
             throw new EmailAddressAlreadyExistsException();
         }
         User newUser = new User(name,email,role,password);
@@ -33,23 +33,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     public boolean validatePassword(String pw) {
-        char[] pwAsCharArray = pw.toCharArray();
+        //char[] pwAsCharArray = pw.toCharArray();
         boolean isUpperCase = false;
         boolean isLowerCase = false;
         boolean isDigit = false;
         boolean isLengthProper = false;
-        for (char ch :pwAsCharArray) {
+        for (int i = 0; i < pw.length(); i++) {
+            char ch = pw.charAt(i);
             if (Character.isUpperCase(ch)) {
                 isUpperCase = true;
             } else if (Character.isLowerCase(ch)) {
                 isLowerCase = true;
             } else if (Character.isDigit(ch)) {
                 isDigit = true;
-            } else if (pwAsCharArray.length >= 8) {
+            } else if (pw.length() >= 8) {
                 isLengthProper = true;
             }
         }
-        return isUpperCase && isLowerCase && isDigit && isLengthProper;
+        if (isUpperCase && isLowerCase && isDigit && isLengthProper) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean validateEmailAddress(String email) {
