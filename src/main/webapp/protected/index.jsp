@@ -41,7 +41,7 @@
 <div class="pageContent">
 <h3>Content</h3>
     <c:forEach items="${curriculums}" var="curriculum">
-        <a href="../setCurriculum"><c:out value ="${curriculum.title}"/></a><br>
+        <a href="../setCurriculum?curriculum=${curriculum.title}"><c:out value ="${curriculum.title}"/></a><br>
     </c:forEach>
 </div>
 
