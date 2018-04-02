@@ -48,10 +48,10 @@
       <input type="password" name="password" id="password"><br><br>
       <input type="submit" name="register" value="Register">
       <c:if test="${not empty error}">
-      <p style="color: red;">${error}</p>
+      <p style="color: red;"><c:out value="${error}"/></p>
       </c:if>
       <c:if test="${empty error}">
-      <p>${info}</p>
+      <p><c:out value="${info}"/></p>
       </c:if>
 
     </form>
