@@ -18,7 +18,7 @@ public class ProfileEditorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
         req.setAttribute("user", user);
-        req.getRequestDispatcher("profile.jsp").forward(req, resp);
+        req.getRequestDispatcher("profileeditor.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,12 +27,11 @@ public class ProfileEditorServlet extends HttpServlet {
 
         try {
             userService.updateName(user, req.getParameter("name"));
+            req.setAttribute("info", "Modification is successful!");
         } catch (EmptyFieldException e) {
             req.setAttribute("error", "Field name cannot be empty!");
         }
-
         userService.updateRole(user, req.getParameter("role"));
-
         doGet(req, resp);
     }
 }
