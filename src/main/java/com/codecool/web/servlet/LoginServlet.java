@@ -13,27 +13,27 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = (UserService) req.getServletContext().getAttribute("userService");
+        LoginService loginService = (LoginService) req.getServletContext().getAttribute("loginService");
+
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        if(email.equals("")|| password.equals("")){
-            resp.sendRedirect("login.jsp");
-            //alert
-            return;
-        }
-        UserDaoImpl userDao = new UserDaoImpl();
-        if(!userDao.isEmailExists(email)){
-            resp.sendRedirect("index.jsp");
-            //alert
-            return;
-        }
-        User user = userDao.getUserByEmail(email);
-        user.setLogedIn(true);
-        HttpSession session = req.getSession();
-        session.setAttribute("isLoggedIn",true);
-        session.setAttribute("loggedUser",user);
-        resp.sendRedirect("index.jsp");
 
+        if (loginService.login(email, password)) {
+            User user = userService.getUser(email);
+            req.getSession().setAttribute("user", user);
+            resp.sendRedirect("protected/profile");
+        } else {
+            req.setAttribute("error", "No such user in database!");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
     }
 }
