@@ -33,7 +33,7 @@
 
   <div class="pageContentReg">
     <h3>Register</h3>
-    <form class="register" action="register" onsubmit="return registerValidate();" method="POST">
+    <form class="register" action="register" method="POST">
       Name:<br>
       <input type="text" name="name" id="name" placeholder="Leslie Nielsen"><br>
       Email:<br>
@@ -55,15 +55,6 @@
       </c:if>
 
     </form>
-    <!--
-    <%
-    UserDaoImpl userDao = new UserDaoImpl();
-    List<User> users = userDao.getAllUsers();
-    for (User user : users) {
-    out.print("<p>" + user + "</p><br>");
-    }
-    %>
-    -->
   </div>
 
 </div>
