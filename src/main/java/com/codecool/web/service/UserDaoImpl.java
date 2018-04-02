@@ -87,24 +87,18 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    public void updateBirth(User user, Object newData) {
-        user.setBirth((Date) newData);
+
+
+    public void updateName(User user, String newName) throws EmptyFieldException {
+        if (newName == null || newName.equals("")) {
+            throw new EmptyFieldException();
+        }
+        user.setName(newName);
     }
 
-    public void updateGender(User user, Object newData) {
-        user.setGender((String) newData);
-    }
-
-    public void updatePassword(User user, Object newData) {
-        user.setPassword((String) newData);
-    }
-
-    public void updateEmail(User user, Object newData) {
-        user.setEmail((String) newData);
-    }
-
-    public void updateName(User user, Object newName) {
-        user.setName((String) newName);
+    @Override
+    public void updateRole(User user, String newRole) {
+        user.setRole(newRole);
     }
 
     @Override
