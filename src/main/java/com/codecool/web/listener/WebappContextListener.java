@@ -7,7 +7,9 @@ import com.codecool.web.service.UserDaoImpl;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
+@WebListener
 public final class WebappContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
