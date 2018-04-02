@@ -9,14 +9,14 @@ public class Assignment {
     private String title;
     private int maxScore;
     private boolean isDone;
-    private Date dueDate;
+    private boolean isPublished;
 
-    public Assignment(HashMap<String, String> assignment, String title, int maxScore ,boolean isDone, Date dueDate) {
+    public Assignment(HashMap<String, String> assignment, String title, int maxScore ,boolean isDone,boolean isPublished) {
         this.assignment = assignment;
         this.title = title;
         this.maxScore = maxScore;
         this.isDone = isDone;
-        this.dueDate = dueDate;
+        this.isPublished = isPublished;
     }
 
     public HashMap<String, String> getAssignment() {
@@ -31,12 +31,12 @@ public class Assignment {
         return maxScore;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public void setMaxScore(int maxScore) {
+        this.maxScore = maxScore;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public boolean isDone() {
+        return isDone;
     }
 
     public void setAssignment(HashMap<String, String> assignment) {
@@ -52,9 +52,13 @@ public class Assignment {
         isDone = done;
     }
 
-    public void setDueDate(Date dueDate) {
 
-        this.dueDate = dueDate;
+    public boolean isPublished() {
+        return isPublished;
+    }
+
+    public void setPublished(boolean published) {
+        isPublished = published;
     }
 
     @Override
@@ -62,7 +66,6 @@ public class Assignment {
         return "Assignment(" + "assignment: " + assignment + ", title: " + title +
             ", Maximum score: " + maxScore +
             ", isDone=" + isDone +
-            ", dueDate=" + dueDate +
             ')';
     }
 }
