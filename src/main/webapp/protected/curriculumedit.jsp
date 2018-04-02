@@ -32,7 +32,7 @@
 
     <div class="pageContent">
         <h3>Edit Curriculum</h3>
-        <form class="login" action="curriculumEditorServlet" method="post">
+        <form class="curriculumEditor" action="curriculumEditorServlet" method="post">
             Curriculum Title:<input type="text" name="title" value="${selectedCurriculum.title}"><br>
             Curriculum Content:<textarea rows="4" cols="50" name ="content"><%=request.getParameter("selectedCurriculum.content")%></textarea>
             <input class="button" type="submit" value="Edit">
