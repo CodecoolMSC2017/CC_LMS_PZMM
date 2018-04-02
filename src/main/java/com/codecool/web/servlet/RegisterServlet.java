@@ -1,7 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
-import com.codecool.web.service.UserDaoImpl;
+import com.codecool.web.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,19 +16,25 @@ public class RegisterServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDao userService = (UserDao) req.getServletContext().getAttribute("userSerivce");
+
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         String role = req.getParameter("role");
         String password = req.getParameter("password");
 
-        User user = new User(name,email,role,password);
-
-        UserDaoImpl userDao = new UserDaoImpl();
-        if(userDao.isEmailExists(email)){
-            return;
+        try {
+            userService.addNewUser(name, email,role,password);
+            req.setAttribute("info", "Registration is successful!");
+        } catch (InvalidRegistrationException e) {
+            req.setAttribute("error", "Please fill all of the fields!");
+        } catch (InvalidEmailAddressException e) {
+            req.setAttribute("error", "Invalid email address type! Try example@ex.com");
+        } catch (InvalidPasswordException e) {
+            req.setAttribute("error", "Invalid password type! Password must contain uppercase, lowercase and digit characters!");
+        } catch (EmailAddressAlreadyExistsException e) {
+            req.setAttribute("error", "Email address is already in use! Try another one!");
         }
-        userDao.addNewUser(user);
-        resp.sendRedirect("register.jsp");
-
+        req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 }
