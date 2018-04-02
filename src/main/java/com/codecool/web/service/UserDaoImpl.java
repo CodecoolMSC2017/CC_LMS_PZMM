@@ -18,13 +18,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addNewUser(String name, String email, String role, String password) throws InvalidRegistrationException, InvalidEmailAddressException, InvalidPasswordException {
+    public void addNewUser(String name, String email, String role, String password) throws InvalidRegistrationException, InvalidEmailAddressException, InvalidPasswordException, EmailAddressAlreadyExistsException {
         if (name.equals("") || email.equals("") || role == null || password.equals("")) {
             throw new InvalidRegistrationException();
         } else if (!validateEmailAddress(email)) {
             throw new InvalidEmailAddressException();
         } else if (!validatePassword(email)) {
             throw new InvalidPasswordException();
+        } else if (!isEmailExists(email)) {
+            throw new EmailAddressAlreadyExistsException();
         }
         User newUser = new User(name,email,role,password);
         users.add(newUser);
@@ -60,10 +62,6 @@ public class UserDaoImpl implements UserDao {
         return email != null && pat.matcher(email).matches();
     }
 
-
-
-
-
     @Override
     public boolean isEmailExists(String email) {
         for (User user :users) {
@@ -84,7 +82,7 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    public void updateBrith(User user, Object newData) {
+    public void updateBirth(User user, Object newData) {
         user.setBirth((Date) newData);
     }
 
