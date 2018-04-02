@@ -12,16 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/userlist")
+@WebServlet("/protected/userlist")
 public class UserListServlet extends HttpServlet {
-
-    private UserDao udi = new UserDaoImpl();
-    private List<User> users = udi.getAllUsers();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", users);
-        req.setAttribute("size", users.size());
+        UserDao userService = (UserDao) req.getServletContext().getAttribute("userService");
+        req.setAttribute("users", userService.getAllUsers());
         req.getRequestDispatcher("userlist.jsp").forward(req, resp);
     }
 }
