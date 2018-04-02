@@ -8,8 +8,10 @@ import java.util.List;
 public interface UserDao {
 
     public List<User> getAllUsers();
-    public void addNewUser(User newUser);
+    public void addNewUser(String name, String email, String role, String password) throws InvalidRegistrationException, InvalidEmailAddressException, InvalidPasswordException;
     public boolean isEmailExists(String email);
+    public boolean validateEmailAddress(String email);
+    public boolean validatePassword(String pw);
     public User getUserByEmail(String email);
     public void deleteUser(User user);
     public void updateBrith(User user, Object newData);
