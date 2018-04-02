@@ -3,13 +3,13 @@ package com.codecool.web.service;
 import com.codecool.web.model.User;
 import com.codecool.web.model.UserList;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    private UserList userList = UserList.getUserListInstance();
-    private List<User> users = userList.getUsers();
+    private final List<User> users = new ArrayList<>();
 
     @Override
     public List<User> getAllUsers() {
