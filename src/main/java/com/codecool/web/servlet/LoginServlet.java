@@ -1,6 +1,8 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
+import com.codecool.web.service.LoginService;
+import com.codecool.web.service.UserDao;
 import com.codecool.web.service.UserDaoImpl;
 
 import javax.servlet.ServletException;
@@ -21,14 +23,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = (UserService) req.getServletContext().getAttribute("userService");
+        UserDao userDao = (UserDao) req.getServletContext().getAttribute("userService");
         LoginService loginService = (LoginService) req.getServletContext().getAttribute("loginService");
 
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
         if (loginService.login(email, password)) {
-            User user = userService.getUser(email);
+            User user = userDao.getUserByEmail(email);
             req.getSession().setAttribute("user", user);
             resp.sendRedirect("protected/profile");
         } else {
