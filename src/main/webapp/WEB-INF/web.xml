@@ -11,4 +11,7 @@
         can be defined instead with annotations. For more search for information on
         "differences between java servlet api 2 and 3", etc.
     -->
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
