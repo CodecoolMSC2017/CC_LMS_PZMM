@@ -24,16 +24,10 @@ public class NewAssignmentServlet extends HttpServlet{
         String title = req.getParameter("title");
         String question = req.getParameter("question");
         String maxScore = req.getParameter("maxscore");
-        String visibility = req.getParameter("visibility");
+        boolean visibility = Boolean.parseBoolean(req.getParameter("visibility"));
 
         try {
-            boolean isPublished = false;
-            if (visibility.equals("published")) {
-                isPublished = true;
-            } else if (visibility.equals("unpublished")) {
-                isPublished = false;
-            }
-            assignmentDao.addNewAssignment(question, title, Integer.parseInt(maxScore), isPublished);
+            assignmentDao.addNewAssignment(question, title, Integer.parseInt(maxScore), visibility);
             req.setAttribute("info", "New assignment is added!");
         } catch (EmptyFieldException e) {
             req.setAttribute("error", "Fill title and question please!");
