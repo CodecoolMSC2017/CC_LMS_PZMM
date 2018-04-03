@@ -49,8 +49,8 @@
             <input type="number" name="maxscore" min="1" value="1"><br>
             Visibility:<br>
             <select name="visibility">
-                <option value="published">Published</option>
-                <option value="unpublished">Unpublished</option>
+                <option value="true">Published</option>
+                <option value="false">Unpublished</option>
             </select><br>
             <input type="submit" name="save" value="Save">
 
