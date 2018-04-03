@@ -33,7 +33,7 @@
             Assignment Title:<br>
             <input type="text" name="title" value="${selectedAssignment.title}"><br>
             Assignment MaxScore:<br>
-            <input type="number" value="${selectedAssignment.maxScore}"><br>
+            <input type="number" name="maxScore" value="${selectedAssignment.maxScore}"><br>
             Assignment Question:<br>
             <textarea rows="4" cols="50" name ="question">${selectedAssignment.question}</textarea><br>
             Assignment IsPublished:<br>
