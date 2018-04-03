@@ -43,6 +43,9 @@
     <c:forEach items="${curriculums}" var="curriculum">
         <a href="../setCurriculum?curriculum=${curriculum.title}"><c:out value ="${curriculum.title}"/></a><br>
     </c:forEach>
+    <c:if test="${user.role=='mentor'}">
+        <td><a href="newcurriculum.jsp">Create new curriculum</a></td>
+    </c:if>
 </div>
 
 <div class="pageRightMenu">
