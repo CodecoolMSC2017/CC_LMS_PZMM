@@ -42,6 +42,9 @@
             <tr>
                 <td><h2>${assignment.title}</h2></td>
                 <td><p>${assignment.maxScore}</p></td>
+                <td><p>${assignment.question}</p></td>
+                <td><p>${assignment.answer}</p></td>
+                <td><p>${assignment.maxScore}</p></td>
                 <td><p>${assignment.isPublished}</p></td>
             </tr>
         </table>
