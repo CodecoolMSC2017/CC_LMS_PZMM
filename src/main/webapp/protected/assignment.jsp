@@ -39,14 +39,12 @@
     <div class="pageContent">
         <h3>Content</h3>
         <table>
-            <tr>
-                <td><h2>${selectedAssignment.title}</h2></td>
-                <td><p>${selectedAssignment.maxScore}</p></td>
-                <td><p>${selectedAssignment.question}</p></td>
-                <td><p>${selectedAssignment.answer}</p></td>
-                <td><p>${selectedAssignment.maxScore}</p></td>
-                <td><p>${selectedAssignment.isPublished}</p></td>
-            </tr>
+            <td>
+                <tr><h2>Title:${selectedAssignment.title}</h2></tr>
+                <tr><p>Maximum score:${selectedAssignment.maxScore}</p></tr>
+                <tr><p>Question:${selectedAssignment.question}</p></tr>
+                <tr><p>Answer:${selectedAssignment.answer}</p></tr>
+            </td>
         </table>
     </div>
 
