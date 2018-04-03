@@ -3,6 +3,7 @@ package com.codecool.web.service;
 import com.codecool.web.model.Assignment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AssignmentDaoImpl implements AssignmentDao {
@@ -15,7 +16,11 @@ public class AssignmentDaoImpl implements AssignmentDao {
     }
 
     @Override
-    public void addNewAssignment(Assignment newAssignment) {
+    public void addNewAssignment(String question, String title, int maxScore, boolean isPublished) throws EmptyFieldException {
+        if (question.equals("") || title.equals("")) {
+            throw new EmptyFieldException();
+        }
+        Assignment newAssignment = new Assignment(question, title, maxScore, false, isPublished);
         assignments.add(newAssignment);
     }
 
