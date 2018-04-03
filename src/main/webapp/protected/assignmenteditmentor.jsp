@@ -27,22 +27,23 @@
 <br>
 
 <div class="wrapper">
-
-
-
     <div class="pageContent">
         <h3>Edit Assignment</h3>
         <form class="assignmentEditor" action="assignmentEditorServlet" method="post">
-            Assignment Title:<input type="text" name="title" value="${selectedAssignment.title}"><br>
-            Assignment MaxScore:<input type="number" value="${selectedAssignment.maxScore}">
-            Assignment Question:<textarea rows="4" cols="50" name ="question">${selectedAssignment.question}</textarea>
-            Assignment IsPublished: <select name="isPublished">
-            <option value="true">Publish</option>
-            <option value="false">Unpublish</option></select>
-            <input class="button" type="submit" value="Edit">
+            Assignment Title:<br>
+            <input type="text" name="title" value="${selectedAssignment.title}"><br>
+            Assignment MaxScore:<br>
+            <input type="number" value="${selectedAssignment.maxScore}"><br>
+            Assignment Question:<br>
+            <textarea rows="4" cols="50" name ="question">${selectedAssignment.question}</textarea><br>
+            Assignment IsPublished:<br>
+            <select name="isPublished">
+                <option value="true">Publish</option>
+                <option value="false">Unpublish</option>
+            </select>
+            <br><input class="button" type="submit" value="Edit">
         </form>
     </div>
-
 </div>
 
 <div class="pageFooter">
