@@ -2,12 +2,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html"%>
 <!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="styling.css">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <jsp:include page="/curriculumList" />
-    <title>Home</title>
+    <title>Assignment creation</title>
 </head>
 <body>
 
@@ -46,7 +46,7 @@
             Question:<br>
             <input type="text" name="question"><br>
             Max score:<br>
-            <input type="number" name="maxscore" min="1" value="1">
+            <input type="number" name="maxscore" min="1" value="1"><br>
             Visibility:<br>
             <select name="visibility">
                 <option value="published">Published</option>
@@ -70,7 +70,6 @@
 
 <div class="pageFooter">
     footer
-</div>
 </div>
 </body>
 </html>
