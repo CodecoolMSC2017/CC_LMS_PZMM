@@ -41,7 +41,7 @@
             Visibility:<br>
             <select name="ispublished" id="ispublished">
                 <option value="true">Published</option>
-                <option value="false">Not published</option>
+                <option value="false">Unpublished</option>
             </select><br>
             <input type="submit" name="creation" value="Create">
 
