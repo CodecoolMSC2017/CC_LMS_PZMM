@@ -39,9 +39,9 @@
         <h3>Content</h3>
         <table>
             <tr>
-                <td><h2>${curriculum.title}</h2></td>
-                <td><p>${curriculum.content}</p></td>
-                <td><p>${curriculum.isPublished}</p></td>
+                <td><h2>${selectedCurriculum.title}</h2></td>
+                <td><p>${selectedCurriculum.content}</p></td>
+                <td><p>${selectedCurriculum.published}</p></td>
             </tr>
         </table>
     </div>
