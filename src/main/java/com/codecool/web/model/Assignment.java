@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Assignment {
     private String question;
+    private String answer;
     private String title;
     private int maxScore;
     private boolean isDone;
@@ -21,6 +22,10 @@ public class Assignment {
 
     public String getQuestion() {
         return question;
+    }
+
+    public String getAnswer() {
+        return answer;
     }
 
     public String getTitle() {
@@ -41,6 +46,10 @@ public class Assignment {
 
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public void setTitle(String title) {
