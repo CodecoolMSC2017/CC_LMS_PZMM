@@ -19,7 +19,7 @@ public class CurriculumCreationServlet extends HttpServlet {
 
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        boolean visibility = Boolean.parseBoolean(req.getParameter("isPublished"));
+        boolean visibility = Boolean.parseBoolean(req.getParameter("ispublished"));
 
         try {
             curriculumService.addNewCurriculum(title, content, visibility);
