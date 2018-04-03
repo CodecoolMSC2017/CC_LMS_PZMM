@@ -40,8 +40,8 @@
             <input type="text" name="content" id="email" placeholder="Content"><br>
             Visibility:<br>
             <select name="ispublished" id="ispublished">
-                <option value="published">Published</option>
-                <option value="notpublished">Not published</option>
+                <option value="true">Published</option>
+                <option value="false">Not published</option>
             </select><br>
             <input type="submit" name="creation" value="Create">
 
