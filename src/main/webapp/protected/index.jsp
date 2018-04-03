@@ -45,7 +45,7 @@
     </c:forEach>
     <c:if test="${user.role=='mentor'}">
         <td><a href="newcurriculum.jsp">Create new curriculum</a></td>
-        <td><a href="newassignment">Create a new assignment</a>
+        <td><a href="newassignment.jsp">Create a new assignment</a>
     </c:if>
 </div>
 
