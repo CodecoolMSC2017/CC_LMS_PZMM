@@ -40,12 +40,12 @@
         <h3>Content</h3>
         <table>
             <tr>
-                <td><h2>${assignment.title}</h2></td>
-                <td><p>${assignment.maxScore}</p></td>
-                <td><p>${assignment.question}</p></td>
-                <td><p>${assignment.answer}</p></td>
-                <td><p>${assignment.maxScore}</p></td>
-                <td><p>${assignment.isPublished}</p></td>
+                <td><h2>${selectedAssignment.title}</h2></td>
+                <td><p>${selectedAssignment.maxScore}</p></td>
+                <td><p>${selectedAssignment.question}</p></td>
+                <td><p>${selectedAssignment.answer}</p></td>
+                <td><p>${selectedAssignment.maxScore}</p></td>
+                <td><p>${selectedAssignment.isPublished}</p></td>
             </tr>
         </table>
     </div>
