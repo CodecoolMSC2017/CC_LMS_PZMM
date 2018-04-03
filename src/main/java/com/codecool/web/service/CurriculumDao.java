@@ -8,7 +8,7 @@ import java.util.List;
 public interface CurriculumDao {
 
     public List<Curriculum> getAllCurriculums();
-    public void addNewCurriculum(Curriculum newCurriculum);
+    public void addNewCurriculum(String title, String content, boolean isPublished) throws EmptyFieldException;
     public void removeCurriculum(Curriculum curriculum);
     public Curriculum getCurriculumByTitle(String title);
     public void updateCurriculumTitle(Curriculum curriculum, String newTitle);

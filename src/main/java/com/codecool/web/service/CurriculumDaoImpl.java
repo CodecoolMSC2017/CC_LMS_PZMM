@@ -15,7 +15,11 @@ public class CurriculumDaoImpl implements CurriculumDao {
     }
 
     @Override
-    public void addNewCurriculum(Curriculum newCurriculum) {
+    public void addNewCurriculum(String title, String content, boolean isPublished) throws EmptyFieldException {
+        if (title.equals("") || content.equals("")) {
+            throw new EmptyFieldException();
+        }
+        Curriculum newCurriculum = new Curriculum(title, content, isPublished);
         curriculums.add(newCurriculum);
     }
 
