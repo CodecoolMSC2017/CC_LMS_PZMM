@@ -28,7 +28,7 @@ public final class WebappContextListener implements ServletContextListener {
         ctx.setAttribute("userService", userService);
         ctx.setAttribute("loginService",loginService);
         ctx.setAttribute("curriculumService",curriculumDao);
-        ctx.setAttribute("assignmenService",assignmentDao);
+        ctx.setAttribute("assignmentService",assignmentDao);
     }
 
     @Override
