@@ -30,7 +30,7 @@ public class AssignmentServlet  extends HttpServlet{
         }
         else {
             req.setAttribute("assignmentLink","/assignmentEdit");
-            req.setAttribute("assignments",assignments);
+            req.setAttribute("assignments",assignments.getAllAssignments());
         }
         resp.sendRedirect("index.jsp");
     }
