@@ -15,22 +15,7 @@
   <img class="dwi" src="dwi.png" >
 </div>
 
-<div class="nav">
-  <table>
-    <tr>
-      <td><a href="index.jsp">Home</a></td>
-      <td><a href="register.jsp">Register</a></td>
-      <td><a href="login.jsp">Login</a></td>
-      <td><a href="userlist">Userlist</a></td>
-    </tr>
-  </table>
-</div>
-<br>
-
 <div class="wrapper">
-
-
-
   <div class="pageContentReg">
     <h3>Register</h3>
     <form class="register" action="register" method="POST">
