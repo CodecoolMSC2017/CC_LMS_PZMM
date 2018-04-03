@@ -25,7 +25,7 @@ public class CurriculumServlet extends HttpServlet{
         User user =(User) req.getSession().getAttribute("user");
         curriculums = (CurriculumDao)req.getServletContext().getAttribute("curriculumService");
 
-        if (user.getRole().equals("Student")) {
+        if (user.getRole().equals("student")) {
             req.setAttribute("curriculumLink","/curriculum");
             req.setAttribute("curriculums",filterList());
 

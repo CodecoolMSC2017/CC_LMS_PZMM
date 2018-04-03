@@ -23,8 +23,6 @@ public class CurriculumEditorServlet extends HttpServlet {
         selectedCurriculum.setContent(req.getParameter("content"));
         selectedCurriculum.setPublished(Boolean.parseBoolean(req.getParameter("isPublished")));
 
-        req.setAttribute("selectedCurriculum", selectedCurriculum);
-        req.getRequestDispatcher("protected/curriculum.jsp").forward(req, resp);
-        resp.sendRedirect("curriculum.jsp");
+        resp.sendRedirect("protected/index.jsp");
     }
 }
