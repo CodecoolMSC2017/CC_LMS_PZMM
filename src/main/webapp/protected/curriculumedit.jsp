@@ -35,9 +35,11 @@
     <div class="pageContent">
         <h3>Edit Curriculum</h3>
         <form class="curriculumEditor" action="curriculumEditorServlet" method="post">
-            Curriculum Title:<input type="text" name="title" value="${selectedCurriculum.title}"><br>
-            Curriculum Content:<textarea rows="4" cols="50" name ="content">${selectedCurriculum.content}</textarea>
-            <input type="checkbox" name="isPublished"  <c:out escapeXml="true" value="${selectedCurriculum.published ? 'checked' : ''}"/>>Published?
+            Curriculum Title:<br>
+            <input type="text" name="title" value="${selectedCurriculum.title}"><br>
+            Curriculum Content:<br>
+            <textarea rows="4" cols="50" name ="content">${selectedCurriculum.content}</textarea><br>
+            <input type="checkbox" name="isPublished"  <c:out escapeXml="true" value="${selectedCurriculum.published ? 'checked' : ''}"/>>Published?<br>
             <input class="button" type="submit" value="Edit">
         </form>
     </div>
