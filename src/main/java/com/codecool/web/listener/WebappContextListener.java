@@ -15,6 +15,7 @@ public final class WebappContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         UserDao userService = new UserDaoImpl();
         LoginService loginService = new LoginService(userService);
+        AssignmentDao assignmentDao = new AssignmentDaoImpl();
         CurriculumDao curriculumDao = new CurriculumDaoImpl();
         User adminMentor = new User("MentorAdmin", "a@a.hu","mentor","a");
         User adminStudent = new User("StudentAdmin", "b@b.hu","student","a");
@@ -27,6 +28,7 @@ public final class WebappContextListener implements ServletContextListener {
         ctx.setAttribute("userService", userService);
         ctx.setAttribute("loginService",loginService);
         ctx.setAttribute("curriculumService",curriculumDao);
+        ctx.setAttribute("assignmenService",assignmentDao);
     }
 
     @Override
