@@ -24,7 +24,7 @@ public class SetAssignmentServlet extends HttpServlet{
             req.getRequestDispatcher("protected/assignment.jsp").forward(req, resp);
         } else {
             session.setAttribute("selectedAssignment", assignmentDao.getAssignmentByTitle(req.getParameter("assignment")));
-            req.getRequestDispatcher("protected/assignmentEdit.jsp").forward(req, resp);
+            req.getRequestDispatcher("protected/assignmenteditmentor.jsp").forward(req, resp);
         }
     }
 }
