@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("protected/newassignment")
+@WebServlet("/protected/newassignment")
 public class NewAssignmentServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,6 +38,7 @@ public class NewAssignmentServlet extends HttpServlet{
         } catch (EmptyFieldException e) {
             req.setAttribute("error", "Fill title and question please!");
         }
+        req.getRequestDispatcher("newassignment.jsp").forward(req, resp);
 
     }
 }
