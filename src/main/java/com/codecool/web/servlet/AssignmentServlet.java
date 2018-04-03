@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
+import com.codecool.web.service.AssignmentDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +16,13 @@ import java.util.*;
 @WebServlet("/assignmentList")
 public class AssignmentServlet  extends HttpServlet{
 
-    private List<Assignment> assignments = new ArrayList<>();
+    private AssignmentDao assignments;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user =(User) req.getSession().getAttribute("user");
-        assignments.add(new Assignment(new HashMap<>(),"assignmenttest",50,false,true));
+        assignments = (AssignmentDao) req.getServletContext().getAttribute("assignmentService");
+
 
         if (user.getRole().equals("student")) {
             req.setAttribute("assignmentLink","/assignment");
@@ -35,7 +37,7 @@ public class AssignmentServlet  extends HttpServlet{
 
     private List<Assignment> filterList() {
         List<Assignment> tempList = new ArrayList<>();
-        for (Assignment ass : assignments) {
+        for (Assignment ass : assignments.getAllAssignments()) {
             if (ass.isPublished()) {
                 tempList.add(ass);
             }
