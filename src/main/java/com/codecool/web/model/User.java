@@ -11,7 +11,6 @@ public class User {
     private String role;
     private String gender;
     private Date birth;
-    private boolean isLogedIn;
 
     public User(String name, String email, String role, String password) {
         this.name = name;
@@ -45,10 +44,6 @@ public class User {
         return birth;
     }
 
-    public boolean isLogedIn() {
-        return isLogedIn;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -67,10 +62,6 @@ public class User {
 
     public void setBirth(Date birth) {
         this.birth = birth;
-    }
-
-    public void setLogedIn(boolean logedIn) {
-        isLogedIn = logedIn;
     }
 
     public void setEmail(String email) {
