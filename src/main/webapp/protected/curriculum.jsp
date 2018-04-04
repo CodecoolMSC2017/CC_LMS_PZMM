@@ -40,8 +40,9 @@
         <table>
             <tr>
                 <td><h2>${selectedCurriculum.title}</h2></td>
+            </tr>
+            <tr>
                 <td><p>${selectedCurriculum.content}</p></td>
-                <td><p>${selectedCurriculum.published}</p></td>
             </tr>
         </table>
     </div>
