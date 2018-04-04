@@ -39,7 +39,7 @@
                 <tr><h2>Title:${selectedAssignment.title}</h2></tr>
                 <tr><p>Maximum score:${selectedAssignment.maxScore}</p></tr>
                 <tr><p>Question:${selectedAssignment.question}</p></tr>
-                <tr><p>Answer:</p></tr>
+                <tr><p>Answer:</p>
                 <form action="SubmitAssignmentServlet" method="post">
                     <textarea rows="4" cols="50" name = "answer" <c:out escapeXml="true" value="${selectedAssignment.done ? 'readonly' : ''}"/> > ${selectedAssignment.answer}</textarea>
                     <c:choose>

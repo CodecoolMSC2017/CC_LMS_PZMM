@@ -26,12 +26,13 @@ public class SubmitAssignmentServlet extends HttpServlet {
         String title = selectedAssignment.getTitle();
         String question = selectedAssignment.getQuestion();
         int maxScore = selectedAssignment.getMaxScore();
-        String answer = selectedAssignment.getAnswer();
+        String answer = req.getParameter("answer");
         boolean isSubmitted = selectedAssignment.isPublished();
         SubmitedAssignmentsDao submittedAssignmentsDao = (SubmitedAssignmentsDao) req.getServletContext().getAttribute("submittedAssignmentsService");
         Assignment assignment = new Assignment(question,title,maxScore,true,isSubmitted);
         assignment.setAnswer(answer);
         submittedAssignmentsDao.addToSubmittedAssignments(loggedInUser.getEmail(),assignment);
+        resp.sendRedirect("protected/assignment.jsp");
 
     }
 }
