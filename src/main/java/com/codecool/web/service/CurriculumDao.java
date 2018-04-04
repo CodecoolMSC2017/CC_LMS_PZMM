@@ -11,7 +11,7 @@ public interface CurriculumDao {
     public void addNewCurriculum(String title, String content, boolean isPublished) throws EmptyFieldException;
     public void removeCurriculum(Curriculum curriculum);
     public Curriculum getCurriculumByTitle(String title);
-    public void updateCurriculumTitle(Curriculum curriculum, String newTitle);
-    public void updateContent(Curriculum curriculum, String newContent);
+    public void updateCurriculumTitle(Curriculum curriculum, String newTitle) throws EmptyFieldException;
+    public void updateContent(Curriculum curriculum, String newContent) throws EmptyFieldException;
     public void updateIsPublished(Curriculum curriculum, boolean isPublished);
 }
