@@ -39,12 +39,18 @@ public class CurriculumDaoImpl implements CurriculumDao {
     }
 
     @Override
-    public void updateCurriculumTitle(Curriculum curriculum, String newTitle) {
+    public void updateCurriculumTitle(Curriculum curriculum, String newTitle) throws EmptyFieldException {
+        if (newTitle.equals("")) {
+            throw new EmptyFieldException();
+        }
         curriculum.setTitle(newTitle);
     }
 
     @Override
-    public void updateContent(Curriculum curriculum, String newContent) {
+    public void updateContent(Curriculum curriculum, String newContent) throws EmptyFieldException {
+        if (newContent.equals("")) {
+            throw new EmptyFieldException();
+        }
         curriculum.setContent(newContent);
     }
 
