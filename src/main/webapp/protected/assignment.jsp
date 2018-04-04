@@ -19,11 +19,7 @@
 <div class="nav">
     <table>
         <tr>
-            <td><a href="index.jsp">Home</a></td>
-            <td><a href="../register.jsp">Register</a></td>
-            <td><a href="../login.jsp">Login</a></td>
-            <td><a href="userlist">Userlist</a></td>
-            <td><a href="profile">Profile</a></td>
+            <td><a href="/protected/index.jsp">Home</a></td>
         </tr>
     </table>
     <input type="submit" value="Log out" action="logout">
@@ -43,13 +39,20 @@
                 <tr><h2>Title:${selectedAssignment.title}</h2></tr>
                 <tr><p>Maximum score:${selectedAssignment.maxScore}</p></tr>
                 <tr><p>Question:${selectedAssignment.question}</p></tr>
-                <tr><p>Answer:${selectedAssignment.answer}</p></tr>
+                <tr><p>Answer:</p></tr>
+                <form action="SubmitAssignmentServlet" method="post">
+                    <textarea rows="4" cols="50" name = "answer" <c:out escapeXml="true" value="${selectedAssignment.done ? 'readonly' : ''}"/> > ${selectedAssignment.answer}</textarea>
+                    <c:choose>
+                        <c:when test = "${not selectedAssignment.done}">
+                            <input class="button" type="submit" value="Submit">
+                        </c:when>
+                        <c:otherwise>
+                            <p>You already published this Assignment</p>
+                        </c:otherwise>
+                    </c:choose>
+                </form>
             </td>
         </table>
-    </div>
-
-    <div class="pageRightMenu">
-        <h3>RightMenu</h3>
     </div>
 </div>
 
