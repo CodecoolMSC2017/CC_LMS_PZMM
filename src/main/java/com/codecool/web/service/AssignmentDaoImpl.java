@@ -40,13 +40,27 @@ public class AssignmentDaoImpl implements AssignmentDao {
     }
 
     @Override
-    public void updateAssignmentTitle(Assignment assignment, String newTitle) {
+    public void updateAssignmentTitle(Assignment assignment, String newTitle) throws EmptyFieldException {
+        if (newTitle.equals("")) {
+            throw new EmptyFieldException();
+        }
         assignment.setTitle(newTitle);
     }
 
     @Override
-    public void updateMaxScore(Assignment assignment, int score) {
-        assignment.setMaxScore(score);
+    public void updateAssignmentQuestion(Assignment assignment, String newQuestion) throws EmptyFieldException {
+        if (newQuestion.equals("")) {
+            throw new EmptyFieldException();
+        }
+        assignment.setQuestion(newQuestion);
+    }
+
+    @Override
+    public void updateMaxScore(Assignment assignment, int newScore) throws EmptyFieldException {
+        if (Integer.toString(newScore).equals("")) {
+            throw new EmptyFieldException();
+        }
+        assignment.setMaxScore(newScore);
     }
 
     @Override
