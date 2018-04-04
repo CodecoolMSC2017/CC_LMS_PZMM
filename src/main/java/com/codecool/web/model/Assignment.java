@@ -19,7 +19,6 @@ public class Assignment {
         this.isDone = isDone;
         this.isPublished = isPublished;
     }
-
     public String getQuestion() {
         return question;
     }
