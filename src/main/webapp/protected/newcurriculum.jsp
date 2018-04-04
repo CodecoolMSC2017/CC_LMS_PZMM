@@ -37,7 +37,7 @@
             Title:<br>
             <input type="text" name="title" id="name" placeholder="Title"><br>
             Content:<br>
-            <input type="text" name="content" id="email" placeholder="Content"><br>
+            <textarea name="content" rows="10" cols="50" placeholder="Content"></textarea><br>
             Visibility:<br>
             <select name="ispublished" id="ispublished">
                 <option value="true">Published</option>
