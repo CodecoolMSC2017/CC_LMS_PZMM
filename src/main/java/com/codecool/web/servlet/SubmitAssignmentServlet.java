@@ -32,7 +32,7 @@ public class SubmitAssignmentServlet extends HttpServlet {
         Assignment assignment = new Assignment(question,title,maxScore,true,isSubmitted);
         assignment.setAnswer(answer);
         submittedAssignmentsDao.addToSubmittedAssignments(loggedInUser.getEmail(),assignment);
-        resp.sendRedirect("protected/assignment.jsp");
+        resp.sendRedirect("protected/index.jsp");
 
     }
 }

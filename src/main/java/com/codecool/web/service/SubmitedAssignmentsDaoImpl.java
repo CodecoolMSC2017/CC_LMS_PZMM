@@ -45,13 +45,10 @@ public class SubmitedAssignmentsDaoImpl implements SubmitedAssignmentsDao {
 
     @Override
     public Assignment getAssigmentForUser(String email, String assignmentTitle) {
-        Iterator it = submittedAssignments.entrySet().iterator();
+        Iterator<Map.Entry<String, List<Assignment>>> it = submittedAssignments.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            //System.out.println(pair.getKey() + " = " + pair.getValue());
-            it.remove();
-           // Assignment assignment = (Assignment) pair.getValue();
-            for (Assignment assignment:(List<Assignment>)pair.getValue()) {
+            Map.Entry<String, List<Assignment>> pair = it.next();
+            for (Assignment assignment: pair.getValue()) {
                 if(assignment.getTitle().equals(assignmentTitle)){
                     return assignment;
                 }
