@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.Assignment;
+import com.codecool.web.model.User;
 import com.codecool.web.service.AssignmentDao;
 import com.codecool.web.service.EmptyFieldException;
 
@@ -14,6 +15,14 @@ import java.io.IOException;
 
 @WebServlet("/assignmentEditorServlet")
 public class AssignmentEditorServlet extends HttpServlet{
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User loggedUser= (User) req.getServletContext().getAttribute("user");
+        if(loggedUser.getRole().equals("student")){
+            resp.sendRedirect("protected/index.jsp");
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
@@ -30,9 +39,6 @@ public class AssignmentEditorServlet extends HttpServlet{
         }
 
         assignmentService.updateIsPublished(selectedAssignment, Boolean.parseBoolean(req.getParameter("isPublished")));
-
-        req.setAttribute("selectedAssignment", selectedAssignment);
-        req.getRequestDispatcher("protected/assignment.jsp").forward(req, resp);
-        resp.sendRedirect("assignment.jsp");
+        req.getRequestDispatcher("protected/assignmenteditmentor.jsp").forward(req, resp);
     }
 }
