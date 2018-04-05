@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="login.css">
     <script src="login.js"></script>
 </head>
-<body>
+<body class="authentication">
 <div class="login-page">
     <div class="form">
         <form class="login-form" action="login" method="post">
