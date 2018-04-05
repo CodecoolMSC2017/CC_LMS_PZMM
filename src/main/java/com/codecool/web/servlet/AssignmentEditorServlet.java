@@ -40,6 +40,5 @@ public class AssignmentEditorServlet extends HttpServlet{
 
         assignmentService.updateIsPublished(selectedAssignment, Boolean.parseBoolean(req.getParameter("isPublished")));
         req.getRequestDispatcher("protected/assignmenteditmentor.jsp").forward(req, resp);
-        resp.sendRedirect("assignmenteditmentor.jsp");
     }
 }
