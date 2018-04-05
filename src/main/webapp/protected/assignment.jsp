@@ -38,8 +38,8 @@
                 <tr><p>Maximum score: ${selectedAssignment.maxScore}</p></tr>
                 <tr><p>Question: ${selectedAssignment.question}</p></tr>
                 <tr><p>Answer: </p></tr>>
-                    <form action="SubmitAssignmentServlet" method="post">
-                        <textarea rows="4" cols="50" name = "answer" <c:out escapeXml="true" value="${selectedAssignment.done ? 'readonly' : ''}"/> > ${selectedAssignment.answer}</textarea>
+                    <form action="../SubmitAssignmentServlet" method="post">
+                        <textarea rows="4" cols="50" name = "answer" <c:out escapeXml="true" value="${selectedAssignment.done ? 'readonly' : ''}"/>>${selectedAssignment.answer}</textarea>
                         <c:choose>
                             <c:when test = "${not selectedAssignment.done}"><br>
                                 <input class="button" type="submit" value="Submit">
