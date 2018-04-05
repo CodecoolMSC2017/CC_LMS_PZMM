@@ -19,7 +19,7 @@
         <option value="student">Student</option>
         <option value="mentor">Mentor</option>
       </select><br>
-      Password:<br>
+      <br>Password:<br>
       <input type="password" name="password" id="password"><br><br>
       <input type="submit" name="register" value="Register">
       <c:if test="${not empty error}">
@@ -28,7 +28,7 @@
       <c:if test="${not empty info}">
         <p><c:out value="${info}"/></p>
       </c:if>
-      <p class="message">Already registered?<a href="login.jsp">Log in!</a></p>
+      <p class="message">Already registered? <a href="login.jsp"> Log in!</a></p>
     </form>
   </div>
 </div>
