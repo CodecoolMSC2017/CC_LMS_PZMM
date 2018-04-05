@@ -37,15 +37,20 @@
                 <tr><h2>Title: ${selectedAssignment.title}</h2></tr>
                 <tr><p>Maximum score: ${selectedAssignment.maxScore}</p></tr>
                 <tr><p>Question: ${selectedAssignment.question}</p></tr>
-                <tr><p>Answer: </p></tr>>
+                <tr><p>Answer: </p></tr>
                     <form action="../SubmitAssignmentServlet" method="post">
-                        <textarea rows="4" cols="50" name = "answer" <c:out escapeXml="true" value="${selectedAssignment.done ? 'readonly' : ''}"/>>${selectedAssignment.answer}</textarea>
+                        <c:if test="${selectedAssignment.done}">
+                            <textarea rows="4" cols="50" name="answer" readonly>${selectedAssignment.answer}</textarea>
+                        </c:if>
+                        <c:if test="${not selectedAssignment.done}">
+                            <textarea rows="4" cols="50" name="answer"></textarea>
+                        </c:if>
                         <c:choose>
                             <c:when test = "${not selectedAssignment.done}"><br>
                                 <input class="button" type="submit" value="Submit">
                             </c:when>
                             <c:otherwise>
-                                <p>You already published this assignment</p>
+                                <p style="color:red;">You already published this assignment!</p>
                             </c:otherwise>
                         </c:choose>
                     </form>
