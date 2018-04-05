@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/assignmentEditorServlet")
+@WebServlet("/protected/assignmentEditorServlet")
 public class AssignmentEditorServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User loggedUser= (User) req.getServletContext().getAttribute("user");
         if(loggedUser.getRole().equals("student")){
-            resp.sendRedirect("protected/index.jsp");
+            resp.sendRedirect("assignment.jsp");
         }
     }
 
@@ -39,6 +39,6 @@ public class AssignmentEditorServlet extends HttpServlet{
         }
 
         assignmentService.updateIsPublished(selectedAssignment, Boolean.parseBoolean(req.getParameter("isPublished")));
-        req.getRequestDispatcher("protected/assignmenteditmentor.jsp").forward(req, resp);
+        req.getRequestDispatcher("assignmenteditmentor.jsp").forward(req, resp);
     }
 }
