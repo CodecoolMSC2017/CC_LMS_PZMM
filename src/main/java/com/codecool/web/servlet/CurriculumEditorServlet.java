@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/curriculumEditorServlet")
+@WebServlet("/protected/curriculumEditorServlet")
 public class CurriculumEditorServlet extends HttpServlet {
 
     @Override
@@ -36,7 +36,6 @@ public class CurriculumEditorServlet extends HttpServlet {
             curriculumDao.updateIsPublished(selectedCurriculum, false);
 
         }
-        req.getRequestDispatcher("protected/curriculumedit.jsp").forward(req, resp);
-        //resp.sendRedirect("protected/index.jsp");
+        req.getRequestDispatcher("curriculumedit.jsp").forward(req, resp);
     }
 }
