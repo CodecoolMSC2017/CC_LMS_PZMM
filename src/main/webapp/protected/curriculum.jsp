@@ -1,60 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html"%>
 <!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
+    <title>${selectedCurriculum.title}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="styling.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="../layout.css">
+    <script src="../html5shiv.js"></script>
 </head>
 <body>
-
-<div class="pageHeader">
-    <img class="logo" src="../lezli.jpg" >
-    <a href="index.jsp">CunFuss</a>
-    <img class="dwi" src="../dwi.png" >
+<div class="wrapper row1">
+    <header id="header" class="clear">
+        <div id="hgroup">
+            <h1><a href="index">CunFuss</a></h1>
+            <h2>Learning Management System</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index">Home</a></li>
+                <li><a href="profile">Profile</a></li>
+                <li><a href="userlist">Users</a></li>
+                <li><a href="../protected/logout">Log out</a></li>
+            </ul>
+        </nav>
+        <div class="clear"></div>
+    </header>
 </div>
-
-<div class="nav">
-    <table>
-        <tr>
-            <td><a href="index.jsp">Home</a></td>
-            <td><a href="../register.jsp">Register</a></td>
-            <td><a href="../login.jsp">Login</a></td>
-            <td><a href="userlist">Userlist</a></td>
-        </tr>
-    </table>
-    <input type="submit" value="Log out" action="logout">
-</div>
-<br>
-
-<div class="wrapper">
-
-    <div class="pageLeftMenu">
-        <h3>LeftMenu</h3>
-    </div>
-
-    <div class="pageContent">
-        <h3>Content</h3>
-        <table>
-            <tr>
-                <td><h2>${selectedCurriculum.title}</h2></td>
-            </tr>
-            <tr>
-                <td><p>${selectedCurriculum.content}</p></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="pageRightMenu">
-        <h3>RightMenu</h3>
+<!-- content -->
+<div class="wrapper row2">
+    <div id="container">
+        <section class="last clear">
+            <div class="three_third">
+                <h3>${selectedCurriculum.title}</h3>
+                <p>${selectedCurriculum.content}</p>
+            </div>
+        </section>
     </div>
 </div>
-
-<div class="pageFooter">
-    footer
-</div>
+<!-- footer -->
+<div class="wrapper row3">
+    <footer id="footer">
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - </p>
+        <p class="fl_right">Template by <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+        <div class="clear"></div>
+    </footer>
 </div>
 </body>
 </html>
