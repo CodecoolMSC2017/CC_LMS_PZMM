@@ -36,9 +36,9 @@
                 <h3>Create new assignment:</h3>
                 <form method="post" action="newassignment">
                     Title:<br>
-                    <input type="text" name="title" placeholder="JAVA OOP Basics"><br>
+                    <input type="text" name="title" placeholder="Title"><br>
                     Question:<br>
-                    <input type="text" name="question"><br>
+                    <input type="text" name="question" placeholder="Question"><br>
                     Max score:<br>
                     <input type="number" name="maxscore" min="1" value="1"><br>
                     Visibility:<br>
@@ -52,7 +52,7 @@
                         <p style="color: red;"><c:out value="${error}"/></p>
                     </c:if>
                     <c:if test="${not empty info}">
-                        <p><c:out value="${info}"/></p>
+                        <p style="color: blue;"><c:out value="${info}"/></p>
                     </c:if>
                 </form>
             </div>
