@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<head>
+<head xmlns:c="http://www.w3.org/1999/XSL/Transform">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="../layout.css">
     <script src="../html5shiv.js"></script>
@@ -40,6 +40,14 @@
                     <textarea rows="4" cols="50" name ="question">${selectedAssignment.question}</textarea><br>
                     Assignment IsPublished:<br>
                     <select name="isPublished">
+                        <option value="" selected disabled hidden>
+                            <c:if test="${selectedAssignment.published}">
+                                Publish
+                            </c:if>
+                            <c:if test="${not selectedAssignment.published}">
+                                Unpublish
+                            </c:if>
+                        </option>
                         <option value="true">Publish</option>
                         <option value="false">Unpublish</option>
                     </select>
