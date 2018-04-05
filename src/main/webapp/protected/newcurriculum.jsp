@@ -48,7 +48,7 @@
                 <p style="color: red;"><c:out value="${error}"/></p>
             </c:if>
             <c:if test="${not empty info}">
-                <p><c:out value="${info}"/></p>
+                <p style="color: blue;"><c:out value="${info}"/></p>
             </c:if>
         </form>
             </div>
