@@ -21,10 +21,10 @@ public class SetCurriculumServlet extends HttpServlet {
         User loggedInUser = (User) session.getAttribute("user");
         if (loggedInUser.getRole().equals("student")) {
             session.setAttribute("selectedCurriculum", curriculumDao.getCurriculumByTitle(req.getParameter("curriculum")));
-            req.getRequestDispatcher("protected/curriculum.jsp").forward(req, resp);
+            resp.sendRedirect("protected/curriculum.jsp");
         } else {
             session.setAttribute("selectedCurriculum", curriculumDao.getCurriculumByTitle(req.getParameter("curriculum")));
-            req.getRequestDispatcher("protected/curriculumedit.jsp").forward(req, resp);
+            resp.sendRedirect("protected/curriculumedit.jsp");
         }
     }
 }
