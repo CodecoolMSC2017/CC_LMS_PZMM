@@ -1,40 +1,57 @@
 package com.codecool.web.listener;
 
-import com.codecool.web.model.Curriculum;
-import com.codecool.web.model.User;
-import com.codecool.web.service.*;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebListener
 public final class WebappContextListener implements ServletContextListener {
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        UserDao userService = new UserDaoImpl();
-        LoginService loginService = new LoginService(userService);
-        AssignmentDao assignmentDao = new AssignmentDaoImpl();
-        CurriculumDao curriculumDao = new CurriculumDaoImpl();
-        SubmitedAssignmentsDao submitedAssignmentsDao = new SubmitedAssignmentsDaoImpl();
-       // User adminMentor = new User("MentorAdmin", "a@a.hu","mentor","a");
-       // User adminStudent = new User("StudentAdmin", "b@b.hu","student","a");
-       // curriculumDao.getAllCurriculums().add(new Curriculum("tesztCurriculum1","12345",true));
-        //curriculumDao.getAllCurriculums().add(new Curriculum("tesztCurriculum2","faszomasdasf",true));
-        //userService.getAllUsers().add(adminMentor);
-        //userService.getAllUsers().add(adminStudent);
+        registerCharacterEncodingFilter(sce);
+        DataSource dataSource = putDataSourceToServletContext(sce);
+        runDatabaseInitScript(dataSource, "/init.sql");
+    }
 
-        ServletContext ctx = sce.getServletContext();
-        ctx.setAttribute("userService", userService);
-        ctx.setAttribute("loginService",loginService);
-        ctx.setAttribute("curriculumService",curriculumDao);
-        ctx.setAttribute("assignmentService",assignmentDao);
-        ctx.setAttribute("submittedAssignmentsService",submitedAssignmentsDao);
+    private void registerCharacterEncodingFilter(ServletContextEvent sce) {
+        sce.getServletContext().addFilter("SetCharacterEncodingFilter", "org.apache.catalina.filters.SetCharacterEncodingFilter");
+    }
+
+    private DataSource putDataSourceToServletContext(ServletContextEvent sce) {
+        try {
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context) initCtx.lookup("java:comp/env");
+            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/database");
+            ServletContext servletCtx = sce.getServletContext();
+            servletCtx.setAttribute("dataSource", dataSource);
+            return dataSource;
+        } catch (NamingException ex) {
+            ex.printStackTrace();
+            throw new IllegalStateException(ex);
+        }
+    }
+
+    private void runDatabaseInitScript(DataSource dataSource, String resource) {
+        try (Connection connection = dataSource.getConnection()) {
+            ScriptUtils.executeSqlScript(connection, new ClassPathResource(resource));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new IllegalStateException(ex);
+        }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-
     }
 }
