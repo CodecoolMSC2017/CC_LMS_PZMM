@@ -1,11 +1,11 @@
 package com.codecool.web.model;
-
-public class Curriculum {
+public class Curriculum extends AbstractModel{
     private String title;
     private String content;
     private boolean isPublished;
 
-    public Curriculum(String title, String content, boolean isPublished) {
+    public Curriculum(int id, String title, String content, boolean isPublished) {
+        super(id);
         this.title = title;
         this.content = content;
         this.isPublished = isPublished;

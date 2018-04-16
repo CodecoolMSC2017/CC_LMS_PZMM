@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class Assignment {
+public class Assignment extends AbstractModel {
     private String question;
     private String answer;
     private String title;
@@ -12,7 +12,8 @@ public class Assignment {
     private boolean isDone;
     private boolean isPublished;
 
-    public Assignment(String question, String title, int maxScore, boolean isDone, boolean isPublished) {
+    public Assignment(int id, String question, String title, int maxScore, boolean isDone, boolean isPublished) {
+        super(id);
         this.question = question;
         this.title = title;
         this.maxScore = maxScore;
