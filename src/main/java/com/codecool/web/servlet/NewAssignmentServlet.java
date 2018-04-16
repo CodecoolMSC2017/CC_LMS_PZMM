@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/protected/newassignment")
-public class NewAssignmentServlet extends HttpServlet{
+public class NewAssignmentServlet extends AbstractServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("newassignment.jsp").forward(req, resp);

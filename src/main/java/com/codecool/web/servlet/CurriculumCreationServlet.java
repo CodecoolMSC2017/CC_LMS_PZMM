@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/protected/curriculumcreation")
-public class CurriculumCreationServlet extends HttpServlet {
+public class CurriculumCreationServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CurriculumDao curriculumService = (CurriculumDao) req.getServletContext().getAttribute("curriculumService");

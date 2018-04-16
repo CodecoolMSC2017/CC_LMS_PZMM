@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/protected/assignmentEditorServlet")
-public class AssignmentEditorServlet extends HttpServlet{
+public class AssignmentEditorServlet extends AbstractServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User loggedUser= (User) req.getServletContext().getAttribute("user");

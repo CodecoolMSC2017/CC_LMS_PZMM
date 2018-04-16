@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/curriculumList")
-public class CurriculumServlet extends HttpServlet{
+public class CurriculumServlet extends AbstractServlet {
 
     private CurriculumDao curriculums;
     private AssignmentDao assignments;
