@@ -18,12 +18,12 @@ public final class WebappContextListener implements ServletContextListener {
         AssignmentDao assignmentDao = new AssignmentDaoImpl();
         CurriculumDao curriculumDao = new CurriculumDaoImpl();
         SubmitedAssignmentsDao submitedAssignmentsDao = new SubmitedAssignmentsDaoImpl();
-        User adminMentor = new User("MentorAdmin", "a@a.hu","mentor","a");
-        User adminStudent = new User("StudentAdmin", "b@b.hu","student","a");
-        curriculumDao.getAllCurriculums().add(new Curriculum("tesztCurriculum1","12345",true));
-        curriculumDao.getAllCurriculums().add(new Curriculum("tesztCurriculum2","faszomasdasf",true));
-        userService.getAllUsers().add(adminMentor);
-        userService.getAllUsers().add(adminStudent);
+       // User adminMentor = new User("MentorAdmin", "a@a.hu","mentor","a");
+       // User adminStudent = new User("StudentAdmin", "b@b.hu","student","a");
+       // curriculumDao.getAllCurriculums().add(new Curriculum("tesztCurriculum1","12345",true));
+        //curriculumDao.getAllCurriculums().add(new Curriculum("tesztCurriculum2","faszomasdasf",true));
+        //userService.getAllUsers().add(adminMentor);
+        //userService.getAllUsers().add(adminStudent);
 
         ServletContext ctx = sce.getServletContext();
         ctx.setAttribute("userService", userService);
