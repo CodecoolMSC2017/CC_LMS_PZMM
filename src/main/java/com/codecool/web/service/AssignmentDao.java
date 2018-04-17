@@ -2,18 +2,21 @@ package com.codecool.web.service;
 
 import com.codecool.web.model.Assignment;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
 public interface AssignmentDao {
 
-    public List<Assignment> getAllAssignments();
-    public void addNewAssignment(String question, String title, int maxScore, boolean isPublished) throws EmptyFieldException;
-    public void removeAssignment(Assignment assignment);
-    public Assignment getAssignmentByTitle(String title);
-    public void updateAssignmentTitle(Assignment assignment, String newTitle) throws EmptyFieldException;
-    public void updateAssignmentQuestion(Assignment assignment, String newQuestion) throws EmptyFieldException;
-    public void updateMaxScore(Assignment assignment,int score) throws EmptyFieldException;
-    public void setDone(Assignment assignment);
-    public void updateIsPublished(Assignment assignment, boolean isPublished);
+    public List<Assignment> getAllAssignments() throws SQLException;
+    public Assignment addNewAssignment(String title, String question, int maxScore, boolean isDone, boolean isPublished) throws EmptyFieldException, SQLException;
+    public void removeAssignmentById(int id) throws SQLException;
+    public Assignment getAssignmentById(int id) throws SQLException;
+    public void updateAssignmentTitleById(int id, String newTitle) throws EmptyFieldException, SQLException;
+    public void updateAssignmentQuestionById(int id, String newQuestion) throws EmptyFieldException, SQLException;
+    public void updateMaxScoreById(int id,int score) throws SQLException;
+    public void updateIsDoneById(int id, boolean isDone) throws SQLException;
+    public void updateIsPublishedById(int id, boolean isPublished) throws SQLException;
+    public Assignment fetchAssignment(ResultSet resultSet) throws SQLException;
 }
