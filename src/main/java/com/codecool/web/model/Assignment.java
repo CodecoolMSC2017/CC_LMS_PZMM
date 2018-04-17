@@ -12,7 +12,7 @@ public class Assignment extends AbstractModel {
     private boolean isDone;
     private boolean isPublished;
 
-    public Assignment(int id, String question, String title, int maxScore, boolean isDone, boolean isPublished) {
+    public Assignment(int id, String title, String question, int maxScore, boolean isDone, boolean isPublished) {
         super(id);
         this.question = question;
         this.title = title;
