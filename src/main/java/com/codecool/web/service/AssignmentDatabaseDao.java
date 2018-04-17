@@ -186,6 +186,24 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     }
 
     @Override
+    public void add(int assignmentId, int userId) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "INSERT INTO users_assignments (user_id, assignment_id) VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+            statement.setInt(1, userId);
+            statement.setInt(2,assignmentId);
+            executeUpdate(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+    @Override
     public Assignment fetchAssignment(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String title = resultSet.getString("title");

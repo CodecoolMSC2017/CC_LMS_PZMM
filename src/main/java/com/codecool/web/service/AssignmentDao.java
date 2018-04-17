@@ -18,5 +18,6 @@ public interface AssignmentDao {
     public void updateMaxScoreById(int id,int score) throws SQLException;
     public void updateIsDoneById(int id, boolean isDone) throws SQLException;
     public void updateIsPublishedById(int id, boolean isPublished) throws SQLException;
+    public void add(int assignmentId, int userId) throws SQLException;
     public Assignment fetchAssignment(ResultSet resultSet) throws SQLException;
 }
