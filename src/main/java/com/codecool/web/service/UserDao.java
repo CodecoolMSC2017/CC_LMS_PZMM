@@ -15,6 +15,6 @@ public interface UserDao {
     public User getUserByEmail(String email) throws SQLException;
     public User getUserById(int id) throws SQLException;
     public void updateName(int id, String name) throws EmptyFieldException, SQLException;
-    public void updateRole(int id, String name) throws SQLException;
-    public void updateNameAndRole(int id, String newName, String role) throws SQLException;
+    public void updateRole(int id, String name) throws SQLException, EmptyFieldException;
+    public void updateNameAndRole(int id, String name, String role) throws SQLException, EmptyFieldException;
 }
