@@ -26,9 +26,9 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     }
 
     @Override
-    public Assignment addNewAssignment(String title, String question, int maxScore, boolean isDone, boolean isPublished) throws SQLException {
+    public Assignment addNewAssignment(String title, String question, int maxScore, boolean isDone, boolean isPublished) throws SQLException, EmptyFieldException {
         if (question.equals("") || title.equals("")) {
-            throw new IllegalArgumentException("Question or title cannot be null or empty!");
+            throw new EmptyFieldException();
         }
         if (maxScore < 1 || maxScore > 100) {
             throw new IllegalArgumentException("Maximum score should be between 1 and 100!");
@@ -175,6 +175,24 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setBoolean(1, isPublished);
             statement.setInt(2, id);
+            executeUpdate(statement);
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+    @Override
+    public void add(int assignmentId, int userId) throws SQLException {
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "INSERT INTO users_assignments (user_id, assignment_id) VALUES (?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+            statement.setInt(1, userId);
+            statement.setInt(2,assignmentId);
             executeUpdate(statement);
             connection.commit();
         } catch (SQLException ex) {
