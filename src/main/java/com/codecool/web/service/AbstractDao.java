@@ -12,11 +12,11 @@ abstract class AbstractDao {
         this.connection = connection;
     }
 
-    void executeInsert(PreparedStatement statement) throws SQLException {
+    void executeUpdate(PreparedStatement statement) throws SQLException {
         int insertCount = statement.executeUpdate();
         if (insertCount != 1) {
             connection.rollback();
-            throw new SQLException("Expected 1 row to be inserted");
+            throw new SQLException("Expected 1 row to be updated");
         }
     }
 
