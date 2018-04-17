@@ -2,8 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Curriculum;
 import com.codecool.web.model.User;
-import com.codecool.web.service.CurriculumDao;
-import com.codecool.web.service.EmptyFieldException;
+import com.codecool.web.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,17 +11,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/protected/curriculumEditorServlet")
 public class CurriculumEditorServlet extends AbstractServlet {
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Curriculum selectedCurriculum = (Curriculum) session.getAttribute("selectedCurriculum");
-        CurriculumDao curriculumDao = (CurriculumDao) req.getServletContext().getAttribute("curriculumService");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            HttpSession session = req.getSession();
+            Curriculum selectedCurriculum = (Curriculum) session.getAttribute("selectedCurriculum");
+            CurriculumDao curriculumDao = new CurriculumDatabaseDao(connection);
+            CurriculumService cs = new SimpleCurriculumService(curriculumDao);
+            cs.updateCurriculumTitle(selectedCurriculum, req.getParameter("title"));
+            cs.updateContent(selectedCurriculum, req.getParameter("content"));
+            if (req.getParameter("isPublished") != null) {
+                cs.updateIsPublished(selectedCurriculum, true);
+            } else {
+                cs.updateIsPublished(selectedCurriculum, false);
+            }
 
-        try {
+            req.setAttribute("info", "Modification is done!");
+        } catch (SQLException | ServiceException e) {
+            req.setAttribute("error", e.getMessage());
+        } catch (EmptyFieldException e) {
+            req.setAttribute("error", "Fill the title and content!");
+        }
+        req.getRequestDispatcher("curriculumedit.jsp").forward(req, resp);
+
+    }
+      /*  try {
             curriculumDao.updateCurriculumTitle(selectedCurriculum, req.getParameter("title"));
             curriculumDao.updateContent(selectedCurriculum, req.getParameter("content"));
             req.setAttribute("info", "Modification is done!");
@@ -37,5 +55,6 @@ public class CurriculumEditorServlet extends AbstractServlet {
 
         }
         req.getRequestDispatcher("curriculumedit.jsp").forward(req, resp);
-    }
+        }*/
+
 }
