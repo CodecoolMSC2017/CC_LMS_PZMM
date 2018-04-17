@@ -8,9 +8,7 @@ CREATE TABLE public.assignments (
     id serial NOT NULL,
     title text NOT NULL,
     question text NOT NULL,
-    answer text,
     max_score integer,
-    is_done boolean NOT NULL,
     is_published boolean NOT NULL
 );
 
@@ -35,7 +33,8 @@ CREATE TABLE public.users (
 
 CREATE TABLE public.users_assignments (
     user_id integer NOT NULL,
-    assignment_id integer NOT NULL
+    assignment_id integer NOT NULL,
+    answer text NOT NULL
 );
 
 
