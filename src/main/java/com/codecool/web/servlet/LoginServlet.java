@@ -1,7 +1,6 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
-import com.codecool.web.service.LoginService;
 import com.codecool.web.service.UserDao;
 
 import javax.servlet.ServletException;
