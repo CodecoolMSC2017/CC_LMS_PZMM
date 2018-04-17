@@ -1,4 +1,4 @@
 package com.codecool.web.service;
 
-public class EmailAddressAlreadyExistsException extends Throwable {
+public class EmailAddressAlreadyExistsException extends Exception {
 }

@@ -1,4 +1,4 @@
 package com.codecool.web.service;
 
-public class EmptyFieldException extends Throwable {
+public class EmptyFieldException extends Exception {
 }
