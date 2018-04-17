@@ -2,8 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
-import com.codecool.web.service.AssignmentDao;
-import com.codecool.web.service.EmptyFieldException;
+import com.codecool.web.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/protected/assignmentEditorServlet")
-public class AssignmentEditorServlet extends AbstractServlet{
+public class AssignmentEditorServlet extends AbstractServlet {
+    private static final String SQL_ERROR_CODE_UNIQUE_VIOLATION = "23505";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User loggedUser= (User) req.getServletContext().getAttribute("user");
-        if(loggedUser.getRole().equals("student")){
+        User loggedUser = (User) req.getServletContext().getAttribute("user");
+        if (loggedUser.getRole().equals("student")) {
             resp.sendRedirect("assignment.jsp");
         }
     }
@@ -27,18 +30,33 @@ public class AssignmentEditorServlet extends AbstractServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Assignment selectedAssignment = (Assignment) session.getAttribute("selectedAssignment");
-        AssignmentDao assignmentService = (AssignmentDao) req.getServletContext().getAttribute("assignmentService");
 
-        try {
-            assignmentService.updateAssignmentTitle(selectedAssignment,req.getParameter("title"));
-            assignmentService.updateAssignmentQuestion(selectedAssignment,req.getParameter("question"));
-            assignmentService.updateMaxScore(selectedAssignment,Integer.parseInt(req.getParameter("maxScore")));
-            req.setAttribute("info", "Modification is successful!");
-        } catch (EmptyFieldException e) {
-            req.setAttribute("error", "These fields cannot be empty!");
+
+        try (Connection connection = getConnection(req.getServletContext())) {
+            AssignmentDao assDao = new AssignmentDatabaseDao(connection);
+            AssignmentService assignmentService = new SimpleAssignmentService((AssignmentDatabaseDao) assDao);
+            String assignmentId = req.getParameter("id");
+            String newTitle = req.getParameter("title");
+            String newQuestion = req.getParameter("question");
+            String newMaxScore = req.getParameter("maxScore");
+            String isDone = req.getParameter("isPublished");
+            try {
+                assignmentService.updateAssignmentTitle(Integer.parseInt(assignmentId), newTitle);
+                assignmentService.updateAssignmentQuestion(Integer.parseInt(assignmentId), newQuestion);
+                assignmentService.updateMaxScore(Integer.parseInt(assignmentId), Integer.parseInt(newMaxScore));
+                assignmentService.updateIsDone(Integer.parseInt(assignmentId), Boolean.parseBoolean(isDone));
+                req.setAttribute("info", "Modification is done!");
+            } catch (ServiceException e) {
+                req.setAttribute("error", "Invalid service operation!");
+            }
+            req.getRequestDispatcher("assignmenteditmentor.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            if (SQL_ERROR_CODE_UNIQUE_VIOLATION.equals(ex.getSQLState())) {
+                req.setAttribute("error", "Invalid SQL operation!");
+            } else {
+                throw new ServletException(ex);
+            }
         }
-
-        assignmentService.updateIsPublished(selectedAssignment, Boolean.parseBoolean(req.getParameter("isPublished")));
-        req.getRequestDispatcher("assignmenteditmentor.jsp").forward(req, resp);
     }
 }
+
