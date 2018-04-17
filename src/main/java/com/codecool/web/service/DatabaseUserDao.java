@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public final class DatabaseUserDao extends AbstractDao implements UserDao {
 
-    DatabaseUserDao(Connection connection) {
+    public DatabaseUserDao(Connection connection) {
         super(connection);
     }
 
@@ -30,13 +30,16 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
     @Override
     public User addNewUser(String name, String email, String role, String password) throws InvalidRegistrationException, InvalidEmailAddressException, InvalidPasswordException, EmailAddressAlreadyExistsException, SQLException {
         if (isEmailExists(email)) {
-            throw new EmailAddressAlreadyExistsException();
+            throw new EmailAddressAlreadyExistsException("Email address is already in use! Try another one!");
         }
         if (!validateEmailAddress(email)) {
-            throw new InvalidEmailAddressException();
+            throw new InvalidEmailAddressException("Invalid email address type! Try example@ex.com");
         }
         if (!validatePassword(password)) {
-            throw new InvalidPasswordException();
+            throw new InvalidPasswordException("Invalid password type! Password must contain uppercase, lowercase and digit characters!");
+        }
+        if (name.equals("") || email.equals("") || role.equals("") || password.equals("")) {
+            throw new InvalidRegistrationException("Please fill all of the fields!");
         }
 
         boolean autoCommit = connection.getAutoCommit();
@@ -140,6 +143,10 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
 
     @Override
     public void updateName(int id, String name) throws EmptyFieldException, SQLException {
+        if (name == null || name.equals("")) {
+            throw new EmptyFieldException("Field name cannot be empty!");
+        }
+
         String sql = "UPDATE users " +
             "SET name = ? " +
             "WHERE id = ?;";
@@ -152,7 +159,11 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
     }
 
     @Override
-    public void updateRole(int id, String role) throws SQLException {
+    public void updateRole(int id, String role) throws SQLException, EmptyFieldException {
+        if (role == null || role.equals("")) {
+            throw new EmptyFieldException("Field role cannot be empty!");
+        }
+
         String sql = "UPDATE users " +
             "SET role = ? " +
             "WHERE id = ?;";
@@ -165,7 +176,11 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
     }
 
     @Override
-    public void updateNameAndRole(int id, String name, String role) throws SQLException {
+    public void updateNameAndRole(int id, String name, String role) throws SQLException, EmptyFieldException {
+       if (name == null || role == null || name.equals("") || role.equals("")) {
+           throw new EmptyFieldException("You have to fill each field!");
+       }
+
         String sql = "UPDATE users " +
             "SET name = ?, role = ? " +
             "WHERE id = ?;";
