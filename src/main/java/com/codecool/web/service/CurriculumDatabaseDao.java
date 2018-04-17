@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao{
-    CurriculumDatabaseDao(Connection connection) {
+    public CurriculumDatabaseDao(Connection connection) {
         super(connection);
     }
 
@@ -27,7 +27,7 @@ public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao{
     @Override
     public Curriculum addNewCurriculum(String title, String content, boolean isPublished) throws EmptyFieldException, SQLException {
         if(title == null || title.equals("") || content == null || content.equals("")){
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title can't be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
@@ -70,7 +70,7 @@ public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao{
     @Override
     public void updateCurriculumTitle(Curriculum curriculum, String newTitle) throws EmptyFieldException, SQLException {
         if(newTitle == null || newTitle.equals("")){
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title can't be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
@@ -91,7 +91,7 @@ public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao{
     @Override
     public void updateContent(Curriculum curriculum, String newContent) throws EmptyFieldException, SQLException {
         if(newContent == null || newContent.equals("")){
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title can't be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
