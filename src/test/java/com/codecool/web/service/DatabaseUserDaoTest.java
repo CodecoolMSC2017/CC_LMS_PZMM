@@ -8,9 +8,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserDaoImplTest {
+class DatabaseUserDaoTest {
 
-    UserDao udi = new UserDaoImpl();
+    UserDao udi = new DatabaseUserDao();
     List<User> users = udi.getAllUsers();
 
     @BeforeEach
