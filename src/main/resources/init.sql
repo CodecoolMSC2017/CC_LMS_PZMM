@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE public.assignments (
-    id serial NOT NULL,
+    id serial PRIMARY KEY,
     title text NOT NULL,
     question text NOT NULL,
     max_score integer,
@@ -14,7 +14,7 @@ CREATE TABLE public.assignments (
 
 
 CREATE TABLE public.curriculums (
-    id serial NOT NULL,
+    id serial PRIMARY KEY,
     title text NOT NULL,
     content text NOT NULL,
     is_published boolean NOT NULL
@@ -22,7 +22,7 @@ CREATE TABLE public.curriculums (
 
 
 CREATE TABLE public.users (
-    id serial NOT NULL,
+    id serial PRIMARY KEY,
     name text NOT NULL,
     email text NOT NULL,
     password text NOT NULL,
@@ -32,9 +32,12 @@ CREATE TABLE public.users (
 
 
 CREATE TABLE public.users_assignments (
-    user_id integer NOT NULL,
-    assignment_id integer NOT NULL,
-    answer text NOT NULL
+    user_id integer,
+    assignment_id integer,
+    answer text NOT NULL,
+    PRIMARY KEY (user_id, assignment_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (assignment_id) REFERENCES assignments(id)
 );
 
 
@@ -47,7 +50,12 @@ INSERT INTO curriculums (title,content,is_published) values
 	('Example 2','example text2','true'),
 	('Example 3','example text3','false');
 
-INSERT INTO assignments (title,question,answer,max_score,is_done,is_published) values
-	('Assignment 1','What?','',10,'false','true'),
-	('Assignment 2','What?','',80,'false','true'),
-	('Assignment 3','What?','',5,'false','false');
+INSERT INTO assignments (title,question,max_score,is_published) values
+	('Assignment 1','What?',10,'true'),
+	('Assignment 2','What?',80,'true'),
+	('Assignment 3','What?',5,'false');
+
+INSERT INTO users_assignments (user_id, assignment_id, answer) values
+    (1, 1, 'I do not know.'),
+    (1, 2, 'Blabla...'),
+    (2, 1, 'Blaaaaaablaaaa...')
