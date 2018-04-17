@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface CurriculumDao {
 
-    public List<Curriculum> getAllCurriculums() throws SQLException;
-    public Curriculum addNewCurriculum(String title, String content, boolean isPublished) throws EmptyFieldException, SQLException;
-    public void removeCurriculum(Curriculum curriculum);
-    public Curriculum getCurriculumByTitle(String title) throws SQLException;
-    public void updateCurriculumTitle(Curriculum curriculum, String newTitle) throws EmptyFieldException, SQLException;
-    public void updateContent(Curriculum curriculum, String newContent) throws EmptyFieldException, SQLException;
-    public void updateIsPublished(Curriculum curriculum, boolean isPublished) throws SQLException;
+    List<Curriculum> getAllCurriculums() throws SQLException;
+    Curriculum addNewCurriculum(String title, String content, boolean isPublished) throws SQLException, EmptyFieldException;
+    void removeCurriculum(Curriculum curriculum);
+    Curriculum getCurriculumByTitle(String title) throws SQLException;
+    void updateCurriculumTitle(Curriculum curriculum, String newTitle) throws SQLException, EmptyFieldException;
+    void updateContent(Curriculum curriculum, String newContent) throws SQLException, EmptyFieldException;
+    void updateIsPublished(Curriculum curriculum, boolean isPublished) throws SQLException;
 }
