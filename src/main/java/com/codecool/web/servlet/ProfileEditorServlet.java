@@ -1,6 +1,7 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
+import com.codecool.web.service.DatabaseUserDao;
 import com.codecool.web.service.EmptyFieldException;
 import com.codecool.web.service.UserDao;
 
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/protected/profileeditor")
 public class ProfileEditorServlet extends AbstractServlet {
@@ -20,16 +23,22 @@ public class ProfileEditorServlet extends AbstractServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userService = (UserDao) req.getServletContext().getAttribute("userService");
         User user = (User) req.getSession().getAttribute("user");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            UserDao userDao = new DatabaseUserDao(connection);
 
-        try {
-            userService.updateName(user, req.getParameter("name"));
+            int id = user.getId();
+            String name = req.getParameter("name");
+            String role = req.getParameter("role");
+
+            userDao.updateNameAndRole(id, name, role);
             req.setAttribute("info", "Modification is successful!");
+        } catch (SQLException e) {
+            throw new ServletException();
         } catch (EmptyFieldException e) {
-            req.setAttribute("error", "Field name cannot be empty!");
+            req.setAttribute("error", e.getMessage());
         }
-        userService.updateRole(user, req.getParameter("role"));
+
         doGet(req, resp);
     }
 }
