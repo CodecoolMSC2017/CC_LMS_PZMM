@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SubmitedAssignmentsDao {
     List<Assignment> getAssignmentsById(int userId);
-    void addToSubmittedAssignments(int userId, int assignmentId);
-    //boolean isSubmitted(String email,String assignmentTitle);
+    void addToSubmittedAssignments(int userId, int assignmentId, String answer);
     Assignment getAssigmentById(int userId, int assignmentId);
+    String getAnswerByUserIdAndAssignmentId(int userId, int assignmentId);
 }
