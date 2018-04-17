@@ -1,13 +1,15 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
-import com.codecool.web.service.UserDao;
+import com.codecool.web.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/login")
 public class LoginServlet extends AbstractServlet {
@@ -19,18 +21,21 @@ public class LoginServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userService = (UserDao) req.getServletContext().getAttribute("userService");
-        LoginService loginService = (LoginService) req.getServletContext().getAttribute("loginService");
+        try (Connection connection = getConnection(req.getServletContext())){
+            UserDao userDao = new DatabaseUserDao(connection);
+            LoginService loginService = new SimpleLoginService(userDao);
 
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+            String email = req.getParameter("email");
+            String password = req.getParameter("password");
 
-        if (loginService.login(email, password)) {
-            User user = userService.getUserByEmail(email);
+            User user = loginService.loginUser(email, password);
+
             req.getSession().setAttribute("user", user);
             resp.sendRedirect("protected/index.jsp");
-        } else {
-            req.setAttribute("error", "No such user in database!");
+        } catch (SQLException e) {
+            throw new ServletException();
+        } catch (ServiceException e) {
+            req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
