@@ -10,31 +10,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/register")
 public class RegisterServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDao userService = (UserDao) req.getServletContext().getAttribute("userService");
 
-        String name = req.getParameter("name");
-        String email = req.getParameter("email");
-        String role = req.getParameter("role");
-        String password = req.getParameter("password");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            UserDao userDao = new DatabaseUserDao(connection);
 
-        try {
-            userService.addNewUser(name, email,role,password);
+            String name = req.getParameter("name");
+            String email = req.getParameter("email");
+            String role = req.getParameter("role");
+            String password = req.getParameter("password");
+
+            User user = userDao.addNewUser(name, email, role, password);
             req.setAttribute("info", "Registration is successful!");
-        } catch (InvalidRegistrationException e) {
-            req.setAttribute("error", "Please fill all of the fields!");
-        } catch (InvalidEmailAddressException e) {
-            req.setAttribute("error", "Invalid email address type! Try example@ex.com");
+        } catch (SQLException e) {
+            throw new ServletException();
         } catch (InvalidPasswordException e) {
-            req.setAttribute("error", "Invalid password type! Password must contain uppercase, lowercase and digit characters!");
+            req.setAttribute("error", e.getMessage());
+        } catch (InvalidRegistrationException e) {
+            req.setAttribute("error", e.getMessage());
         } catch (EmailAddressAlreadyExistsException e) {
-            req.setAttribute("error", "Email address is already in use! Try another one!");
+            req.setAttribute("error", e.getMessage());
+        } catch (InvalidEmailAddressException e) {
+            req.setAttribute("error", e.getMessage());
         }
+
         req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 }
