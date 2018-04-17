@@ -1,4 +1,4 @@
 package com.codecool.web.service;
 
-public class InvalidEmailAddressException extends Throwable {
+public class InvalidEmailAddressException extends Exception {
 }
