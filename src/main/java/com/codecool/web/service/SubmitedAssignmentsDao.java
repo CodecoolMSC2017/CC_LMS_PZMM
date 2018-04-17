@@ -5,8 +5,7 @@ import com.codecool.web.model.Assignment;
 import java.util.List;
 
 public interface SubmitedAssignmentsDao {
-    List<Assignment> getAssignmentsById(int userId);
-    void addToSubmittedAssignments(int userId, int assignmentId, String answer);
+    List<Assignment> getSubmittedAssignmentsById(int userId);
     Assignment getAssigmentById(int userId, int assignmentId);
-    String getAnswerByUserIdAndAssignmentId(int userId, int assignmentId);
+    void addToSubmittedAssignments(int userId, int assignmentId, String answer);
 }
