@@ -7,9 +7,9 @@ import java.util.List;
 
 public class SimpleAssignmentService implements AssignmentService{
 
-    private final AssignmentDatabaseDao assDao;
+    private final AssignmentDao assDao;
 
-    public SimpleAssignmentService(AssignmentDatabaseDao assDao) {
+    public SimpleAssignmentService(AssignmentDao assDao) {
         this.assDao = assDao;
     }
 
