@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/protected/curriculumcreation")
 public class CurriculumCreationServlet extends AbstractServlet {
@@ -26,6 +27,8 @@ public class CurriculumCreationServlet extends AbstractServlet {
             req.setAttribute("info", "Curriculum creation is successful!");
         } catch (EmptyFieldException e) {
             req.setAttribute("error", "Title and content field cannot be empty!");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         req.getRequestDispatcher("newcurriculum.jsp").forward(req, resp);
     }
