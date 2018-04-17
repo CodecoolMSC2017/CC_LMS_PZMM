@@ -32,7 +32,7 @@ public final class WebappContextListener implements ServletContextListener {
         try {
             Context initCtx = new InitialContext();
             Context envCtx = (Context) initCtx.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/database");
+            DataSource dataSource = (DataSource) envCtx.lookup("jdbc/lms-db");
             ServletContext servletCtx = sce.getServletContext();
             servletCtx.setAttribute("dataSource", dataSource);
             return dataSource;
