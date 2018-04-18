@@ -17,8 +17,14 @@ import java.sql.SQLException;
 public class ProfileEditorServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
-        req.setAttribute("user", user);
+        User sessionUser = (User) req.getSession().getAttribute("user");
+        try (Connection connection = getConnection(req.getServletContext())) {
+            UserDao userDao = new DatabaseUserDao(connection);
+            User user = userDao.getUserByEmail(sessionUser.getEmail());
+            req.setAttribute("user", user);
+        } catch (SQLException e) {
+            throw new ServletException();
+        }
         req.getRequestDispatcher("profileeditor.jsp").forward(req, resp);
     }
 
