@@ -20,4 +20,8 @@ public interface AssignmentDao {
     public void updateIsPublishedById(int id, boolean isPublished) throws SQLException;
     public void add(int assignmentId, int userId) throws SQLException;
     public Assignment fetchAssignment(ResultSet resultSet) throws SQLException;
+    public List<Assignment> getSubmittedAssignmentsById(int userId) throws SQLException;
+    public List<Assignment> getUnSubmittedAssignmentsById(int userId) throws SQLException;
+    public Assignment getAssignmentByUserId(int userId, int assignmentId);
+    public void addToSubmittedAssignments(int userId, int assignmentId, String answer);
 }
