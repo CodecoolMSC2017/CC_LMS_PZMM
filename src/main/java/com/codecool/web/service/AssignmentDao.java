@@ -22,4 +22,5 @@ public interface AssignmentDao {
     public HashMap<Assignment, String> getSubmittedAssignmentsById(int userId) throws SQLException;
     public List<Assignment> getUnSubmittedAssignmentsById(int userId) throws SQLException;
     public Assignment getAssignmentByIdForUser(int userId, int assignmentId) throws SQLException;
+    public boolean isSubmitted(int userId, int assignmentId) throws SQLException;
 }

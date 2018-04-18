@@ -250,4 +250,23 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         }
         return null;
     }
+
+    @Override
+    public boolean isSubmitted(int userId, int assignmentId) throws SQLException {
+        boolean isSubmitted = false;
+        String sql = "SELECT * FROM assignments as ass " +
+            "JOIN users_assignments AS ua ON ass.id = ua.assignment_id " +
+            "JOIN users AS u ON ua.user_id = u.id " +
+            "WHERE ua.user_id = ? AND ua.assignment_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            statement.setInt(2, assignmentId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (!resultSet.next()) {
+                    isSubmitted = true;
+                }
+            }
+        }
+        return isSubmitted;
+    }
 }
