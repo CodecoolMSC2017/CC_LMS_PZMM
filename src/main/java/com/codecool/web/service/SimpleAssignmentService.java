@@ -85,4 +85,13 @@ public class SimpleAssignmentService implements AssignmentService{
     public void updateIsPublished(int id, boolean isPublished) throws SQLException {
         assDao.updateIsPublishedById(id,isPublished);
     }
+
+    @Override
+    public Assignment getAssignmentByIdForUser(int userId, int assignmentId) throws ServiceException {
+        try {
+            return assDao.getAssignmentByIdForUser(userId,assignmentId);
+        } catch (SQLException e) {
+            throw new ServiceException();
+        }
+    }
 }

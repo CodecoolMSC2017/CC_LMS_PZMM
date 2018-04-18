@@ -17,6 +17,7 @@ public interface AssignmentService {
     void updateAssignmentQuestion(int id,String newQuestion) throws SQLException, ServiceException;
     void updateMaxScore(int id,int score) throws SQLException, ServiceException;
     void updateIsPublished(int id, boolean isPublished) throws SQLException;
+    Assignment getAssignmentByIdForUser(int userId,int assignmentId) throws ServiceException;
 
 
 }
