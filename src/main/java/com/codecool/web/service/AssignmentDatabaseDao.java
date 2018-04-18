@@ -28,23 +28,24 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     @Override
     public Assignment addNewAssignment(String title, String question, int maxScore, boolean isDone, boolean isPublished) throws SQLException, EmptyFieldException {
         if (question.equals("") || title.equals("")) {
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title cannot be empty");
         }
         if (maxScore < 1 || maxScore > 100) {
             throw new IllegalArgumentException("Maximum score should be between 1 and 100!");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO assignments (title, question, max_score, is_published) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO assignments (title, question, max_score, is_done, is_published) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setString(1, title);
             statement.setString(2, question);
             statement.setInt(3, maxScore);
-            statement.setBoolean(4, isPublished);
+            statement.setBoolean(4, isDone);
+            statement.setBoolean(5, isPublished);
             executeUpdate(statement);
             int id = fetchGeneratedId(statement);
             connection.commit();
-            return new Assignment(id, title, question, maxScore, isPublished);
+            return new Assignment(id, title, question, maxScore, isDone, isPublished);
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
@@ -86,8 +87,8 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
 
     @Override
     public void updateAssignmentTitleById(int id, String newTitle) throws EmptyFieldException, SQLException {
-        if (newTitle == null || newTitle.equals("")) {
-            throw new EmptyFieldException();
+        if (newTitle.equals("") || newTitle == null) {
+            throw new EmptyFieldException("Title cannot be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
@@ -109,7 +110,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     @Override
     public void updateAssignmentQuestionById(int id, String newQuestion) throws EmptyFieldException, SQLException {
         if (newQuestion.equals("") || newQuestion == null) {
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title cannot be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
@@ -208,40 +209,8 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         String title = resultSet.getString("title");
         String question = resultSet.getString("question");
         int maxScore = resultSet.getInt("max_score");
+        boolean isDone = resultSet.getBoolean("is_done");
         boolean isPublished = resultSet.getBoolean("is_published");
-        return new Assignment(id, title, question, maxScore, isPublished);
-    }
-
-    @Override
-    public List<Assignment> getSubmittedAssignmentsById(int userId) throws SQLException {
-        List<Assignment> assignments = new ArrayList<>();
-        String sql = "SELECT * FROM assignments as ass " +
-            "JOIN users_assignments AS ua ON ua.assignment_id = ass.id " +
-            "WHERE ua.user_id = ?";
-
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, userId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    assignments.add(fetchAssignment(resultSet));
-                }
-            }
-        }
-        return assignments;
-    }
-
-    @Override
-    public List<Assignment> getUnSubmittedAssignmentsById(int userId) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Assignment getAssignmentByUserId(int userId, int assignmentId) {
-        return null;
-    }
-
-    @Override
-    public void addToSubmittedAssignments(int userId, int assignmentId, String answer) {
-
+        return new Assignment(id, title, question, maxScore, isDone, isPublished);
     }
 }
