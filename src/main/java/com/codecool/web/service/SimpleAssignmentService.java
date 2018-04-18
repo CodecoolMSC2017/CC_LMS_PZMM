@@ -3,6 +3,7 @@ package com.codecool.web.service;
 import com.codecool.web.model.Assignment;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public class SimpleAssignmentService implements AssignmentService{
@@ -19,7 +20,7 @@ public class SimpleAssignmentService implements AssignmentService{
     }
 
     @Override
-    public List<Assignment> getSubmittedAssignmentsByUserId(int userId) throws ServiceException {
+    public HashMap<Assignment, String> getSubmittedAssignmentsByUserId(int userId) throws ServiceException {
         try {
             return assDao.getSubmittedAssignmentsById(userId);
         } catch (SQLException e) {
@@ -78,11 +79,6 @@ public class SimpleAssignmentService implements AssignmentService{
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
-    }
-
-    @Override
-    public void updateIsDone(int id, boolean isDone) throws SQLException {
-        assDao.updateIsDoneById(id, isDone);
     }
 
     @Override
