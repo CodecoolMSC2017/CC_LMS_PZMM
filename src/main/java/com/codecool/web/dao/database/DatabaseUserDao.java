@@ -17,15 +17,15 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
 
     @Override
     public List<User> findAllUsers() throws SQLException {
-        String sql = "SELECT name, email, role FROM users;";
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
-            List<User> users = new ArrayList<>();
             while (resultSet.next()) {
                 users.add(fetchUser(resultSet));
             }
-            return users;
         }
+        return users;
     }
 
     @Override
