@@ -1,6 +1,6 @@
+DROP TABLE IF EXISTS users_assignments;
 DROP TABLE IF EXISTS assignments;
 DROP TABLE IF EXISTS curriculums;
-DROP TABLE IF EXISTS users_assignments;
 DROP TABLE IF EXISTS users;
 
 
