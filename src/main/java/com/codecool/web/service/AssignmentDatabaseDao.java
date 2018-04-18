@@ -217,7 +217,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     @Override
     public List<Assignment> getUnSubmittedAssignmentsById(int userId) throws SQLException {
         List<Assignment> assignments = new ArrayList<>();
-        String sql = "SELECT * FROM assignments" +
+        String sql = "SELECT * FROM assignments " +
             "WHERE assignments.id not in " +
             "(SELECT ua.assignment_id " +
             "FROM users_assignments AS ua " +
