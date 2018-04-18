@@ -2,7 +2,7 @@ package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.AssignmentDao;
 import com.codecool.web.model.Assignment;
-import com.codecool.web.service.AbstractDao;
+import com.codecool.web.dao.database.AbstractDao;
 import com.codecool.web.service.exception.EmptyFieldException;
 
 import java.sql.*;
