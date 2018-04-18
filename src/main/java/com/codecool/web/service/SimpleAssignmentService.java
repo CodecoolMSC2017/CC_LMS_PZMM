@@ -103,4 +103,13 @@ public class SimpleAssignmentService implements AssignmentService{
             throw new ServiceException();
         }
     }
+
+    @Override
+    public void addToSubmissions(int assignmentId, int userId, String answer) throws ServiceException {
+        try {
+            assDao.addToSubmittedAssignments(assignmentId,userId,answer);
+        } catch (SQLException e) {
+            throw new ServiceException();
+        }
+    }
 }

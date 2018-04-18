@@ -35,16 +35,16 @@ public class AssignmentEditorServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             AssignmentDao assDao = new AssignmentDatabaseDao(connection);
             AssignmentService assignmentService = new SimpleAssignmentService((AssignmentDatabaseDao) assDao);
-            String assignmentId = req.getParameter("id");
+            int assignmentId = selectedAssignment.getId();
             String newTitle = req.getParameter("title");
             String newQuestion = req.getParameter("question");
             String newMaxScore = req.getParameter("maxScore");
-            String isDone = req.getParameter("isPublished");
+            String isPublished = req.getParameter("isPublished");
             try {
-                assignmentService.updateAssignmentTitle(Integer.parseInt(assignmentId), newTitle);
-                assignmentService.updateAssignmentQuestion(Integer.parseInt(assignmentId), newQuestion);
-                assignmentService.updateMaxScore(Integer.parseInt(assignmentId), Integer.parseInt(newMaxScore));
-                assignmentService.updateIsDone(Integer.parseInt(assignmentId), Boolean.parseBoolean(isDone));
+                assignmentService.updateAssignmentTitle(assignmentId, newTitle);
+                assignmentService.updateAssignmentQuestion(assignmentId, newQuestion);
+                assignmentService.updateMaxScore(assignmentId, Integer.parseInt(newMaxScore));
+                assignmentService.updateIsPublished(assignmentId, Boolean.parseBoolean(isPublished));
                 req.setAttribute("info", "Modification is done!");
             } catch (ServiceException e) {
                 req.setAttribute("error", "Invalid service operation!");

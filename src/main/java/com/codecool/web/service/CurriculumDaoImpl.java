@@ -17,7 +17,7 @@ public class CurriculumDaoImpl implements CurriculumDao {
     @Override
     public Curriculum addNewCurriculum(String title, String content, boolean isPublished) throws EmptyFieldException {
         if (title.equals("") || content.equals("")) {
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title can't be empty");
         }
         Curriculum newCurriculum = new Curriculum(curriculums.size()+1,title, content, isPublished);
         curriculums.add(newCurriculum);
@@ -42,7 +42,7 @@ public class CurriculumDaoImpl implements CurriculumDao {
     @Override
     public void updateCurriculumTitle(Curriculum curriculum, String newTitle) throws EmptyFieldException {
         if (newTitle.equals("")) {
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Title can't be empty");
         }
         curriculum.setTitle(newTitle);
     }
@@ -50,7 +50,7 @@ public class CurriculumDaoImpl implements CurriculumDao {
     @Override
     public void updateContent(Curriculum curriculum, String newContent) throws EmptyFieldException {
         if (newContent.equals("")) {
-            throw new EmptyFieldException();
+            throw new EmptyFieldException("Content can't be empty");
         }
         curriculum.setContent(newContent);
     }

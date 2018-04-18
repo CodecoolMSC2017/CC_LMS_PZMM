@@ -42,7 +42,7 @@ public class CurriculumServlet extends AbstractServlet {
                 req.setAttribute("curriculumLink", "/curriculumEdit");
                 req.setAttribute("curriculums", curriculumService.getAllCurriculums());
                 req.setAttribute("assignmentLink", "/assignmenteditmentor");
-                req.setAttribute("assignments", assignments.getAllAssignments());
+                req.setAttribute("assignments", assignmentService.getAssignments());
 
             }
 

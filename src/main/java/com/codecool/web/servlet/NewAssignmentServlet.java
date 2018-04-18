@@ -34,14 +34,14 @@ public class NewAssignmentServlet extends AbstractServlet {
 
 
             try {
-                assignmentService.addAssignment(title, question, Integer.parseInt(maxScore), false, isPublished);
+                assignmentService.addAssignment(title, question, Integer.parseInt(maxScore), isPublished);
                 req.setAttribute("info", "New assignment is added!");
             } catch (ServiceException e) {
                 req.setAttribute("error", "Fill title and question please!");
             }
         } catch (SQLException ex) {
             if (SQL_ERROR_CODE_UNIQUE_VIOLATION.equals(ex.getSQLState())) {
-                req.setAttribute("error", "Coupon has been already added to one of the selected shops");
+                req.setAttribute("error", "Assignment has been already added");
             } else {
                 throw new ServletException(ex);
             }
