@@ -4,6 +4,7 @@ import com.codecool.web.model.Assignment;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public final class AssignmentDatabaseDao extends AbstractDao implements AssignmentDao {
@@ -149,11 +150,6 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     }
 
     @Override
-    public void updateIsDoneById(int id, boolean isDone) throws SQLException {
-
-    }
-
-    @Override
     public void updateIsPublishedById(int id, boolean isPublished) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
@@ -201,8 +197,8 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     }
 
     @Override
-    public List<Assignment> getSubmittedAssignmentsById(int userId) throws SQLException {
-        List<Assignment> assignments = new ArrayList<>();
+    public HashMap<Assignment, String> getSubmittedAssignmentsById(int userId) throws SQLException {
+        HashMap<Assignment, String> assignments = new HashMap<>();
         String sql = "SELECT * FROM assignments as ass " +
             "JOIN users_assignments AS ua ON ua.assignment_id = ass.id " +
             "WHERE ua.user_id = ?";
@@ -211,7 +207,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    assignments.add(fetchAssignment(resultSet));
+                    assignments.put(fetchAssignment(resultSet), resultSet.getString("answer"));
                 }
             }
         }
@@ -235,10 +231,5 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
             }
         }
         return assignments;
-    }
-
-    @Override
-    public Assignment getAssignmentByUserId(int userId, int assignmentId) {
-        return null;
     }
 }
