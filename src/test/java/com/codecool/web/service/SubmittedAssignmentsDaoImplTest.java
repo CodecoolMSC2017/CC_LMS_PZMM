@@ -4,10 +4,8 @@ import com.codecool.web.model.Assignment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class SubmitedAssignmentsDaoImplTest {
-    SubmitedAssignmentsDao assDao = new SubmitedAssignmentsDaoImpl();
+class SubmittedAssignmentsDaoImplTest {
+    SubmittedAssignmentsDao assDao = new SubmittedAssignmentsDaoImpl();
     @BeforeEach
     void setUp() {
 
