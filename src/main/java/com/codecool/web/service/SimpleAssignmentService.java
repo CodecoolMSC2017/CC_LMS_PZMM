@@ -19,9 +19,27 @@ public class SimpleAssignmentService implements AssignmentService{
     }
 
     @Override
-    public Assignment addAssignment(String title, String question, int maxScore, boolean isDone, boolean isPublished) throws SQLException, ServiceException {
+    public List<Assignment> getSubmittedAssignmentsByUserId(int userId) throws ServiceException {
         try {
-            return assDao.addNewAssignment(title, question, maxScore, isDone, isPublished);
+            return assDao.getSubmittedAssignmentsById(userId);
+        } catch (SQLException e) {
+            throw new ServiceException("Invalid SQL operation!");
+        }
+    }
+
+    @Override
+    public List<Assignment> getUnSubmittedAssignmentsByUserId(int userId) throws ServiceException {
+        try {
+            return assDao.getUnSubmittedAssignmentsById(userId);
+        } catch (SQLException e) {
+            throw new ServiceException("Invalid SQL operation!");
+        }
+    }
+
+    @Override
+    public Assignment addAssignment(String title, String question, int maxScore, boolean isPublished) throws SQLException, ServiceException {
+        try {
+            return assDao.addNewAssignment(title, question, maxScore, isPublished);
         } catch (EmptyFieldException ex) {
             throw new ServiceException("Title and question cannot be null!");
         } catch (IllegalArgumentException ex) {
