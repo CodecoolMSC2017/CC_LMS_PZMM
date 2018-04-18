@@ -2,7 +2,6 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
-import com.codecool.web.service.SubmittedAssignmentsDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
