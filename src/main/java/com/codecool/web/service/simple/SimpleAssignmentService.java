@@ -1,12 +1,16 @@
-package com.codecool.web.service;
+package com.codecool.web.service.simple;
 
+import com.codecool.web.dao.AssignmentDao;
 import com.codecool.web.model.Assignment;
+import com.codecool.web.service.AssignmentService;
+import com.codecool.web.service.exception.EmptyFieldException;
+import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
-public class SimpleAssignmentService implements AssignmentService{
+public class SimpleAssignmentService implements AssignmentService {
 
     private final AssignmentDao assDao;
 

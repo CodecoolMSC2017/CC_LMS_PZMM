@@ -1,9 +1,9 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
-import com.codecool.web.service.DatabaseUserDao;
-import com.codecool.web.service.EmptyFieldException;
-import com.codecool.web.service.UserDao;
+import com.codecool.web.dao.database.DatabaseUserDao;
+import com.codecool.web.service.exception.EmptyFieldException;
+import com.codecool.web.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

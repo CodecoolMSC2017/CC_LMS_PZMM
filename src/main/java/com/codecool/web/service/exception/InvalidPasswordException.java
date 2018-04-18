@@ -1,4 +1,4 @@
-package com.codecool.web.service;
+package com.codecool.web.service.exception;
 
 public class InvalidPasswordException extends Exception {
 

@@ -1,12 +1,15 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.dao.AssignmentDao;
+import com.codecool.web.dao.database.AssignmentDatabaseDao;
 import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
 import com.codecool.web.service.*;
+import com.codecool.web.service.exception.ServiceException;
+import com.codecool.web.service.simple.SimpleAssignmentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

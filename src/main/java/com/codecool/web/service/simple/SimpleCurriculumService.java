@@ -1,11 +1,15 @@
-package com.codecool.web.service;
+package com.codecool.web.service.simple;
 
+import com.codecool.web.dao.CurriculumDao;
 import com.codecool.web.model.Curriculum;
+import com.codecool.web.service.CurriculumService;
+import com.codecool.web.service.exception.EmptyFieldException;
+import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class SimpleCurriculumService implements CurriculumService{
+public class SimpleCurriculumService implements CurriculumService {
     private final CurriculumDao curriculumDao;
 
     public SimpleCurriculumService(CurriculumDao curriculumDao) {

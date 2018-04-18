@@ -1,10 +1,11 @@
-package com.codecool.web.service;
+package com.codecool.web.dao.database;
 
+import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
+import com.codecool.web.service.exception.*;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 

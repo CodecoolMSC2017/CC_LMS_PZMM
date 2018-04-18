@@ -1,6 +1,7 @@
-package com.codecool.web.service;
+package com.codecool.web.dao;
 
 import com.codecool.web.model.Assignment;
+import com.codecool.web.service.exception.EmptyFieldException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

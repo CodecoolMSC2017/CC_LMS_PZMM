@@ -1,12 +1,15 @@
-package com.codecool.web.service;
+package com.codecool.web.dao.database;
 
+import com.codecool.web.dao.CurriculumDao;
 import com.codecool.web.model.Curriculum;
+import com.codecool.web.service.AbstractDao;
+import com.codecool.web.service.exception.EmptyFieldException;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao{
+public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao {
     public CurriculumDatabaseDao(Connection connection) {
         super(connection);
     }
