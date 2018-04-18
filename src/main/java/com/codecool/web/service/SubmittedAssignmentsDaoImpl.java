@@ -4,7 +4,7 @@ import com.codecool.web.model.Assignment;
 
 import java.util.*;
 
-public class SubmitedAssignmentsDaoImpl implements SubmitedAssignmentsDao {
+public class SubmittedAssignmentsDaoImpl implements SubmittedAssignmentsDao {
     private final Map<String,List<Assignment>> submittedAssignments = new HashMap<>();
     @Override
     public List<Assignment> getAssignmentsByEmail(String email) {
