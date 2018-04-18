@@ -2,11 +2,10 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
-import com.codecool.web.service.SubmitedAssignmentsDao;
+import com.codecool.web.service.SubmittedAssignmentsDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,7 +27,7 @@ public class SubmitAssignmentServlet extends AbstractServlet {
         int maxScore = selectedAssignment.getMaxScore();
         String answer = req.getParameter("answer");
         boolean isSubmitted = selectedAssignment.isPublished();
-        SubmitedAssignmentsDao submittedAssignmentsDao = (SubmitedAssignmentsDao) req.getServletContext().getAttribute("submittedAssignmentsService");
+        SubmittedAssignmentsDao submittedAssignmentsDao = (SubmittedAssignmentsDao) req.getServletContext().getAttribute("submittedAssignmentsService");
         Assignment assignment = new Assignment(question,title,maxScore,true,isSubmitted);
         assignment.setAnswer(answer);
         submittedAssignmentsDao.addToSubmittedAssignments(loggedInUser.getEmail(),assignment);

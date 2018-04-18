@@ -1,13 +1,11 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
 import com.codecool.web.service.AssignmentDao;
-import com.codecool.web.service.SubmitedAssignmentsDao;
+import com.codecool.web.service.SubmittedAssignmentsDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +18,7 @@ public class SetAssignmentServlet extends AbstractServlet{
         HttpSession session = req.getSession();
         AssignmentDao assignmentDao = (AssignmentDao) req.getServletContext().getAttribute("assignmentService");
         User loggedInUser = (User) session.getAttribute("user");
-        SubmitedAssignmentsDao submittedAssignmentsDao = (SubmitedAssignmentsDao) req.getServletContext().getAttribute("submittedAssignmentsService");
+        SubmittedAssignmentsDao submittedAssignmentsDao = (SubmittedAssignmentsDao) req.getServletContext().getAttribute("submittedAssignmentsService");
         if (loggedInUser.getRole().equals("student")) {
             if(submittedAssignmentsDao.isSubmitted(loggedInUser.getEmail(),req.getParameter("assignment"))){
                 session.setAttribute("selectedAssignment", submittedAssignmentsDao.getAssigmentForUser(loggedInUser.getEmail(),req.getParameter("assignment")));
