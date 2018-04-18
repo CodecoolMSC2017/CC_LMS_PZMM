@@ -94,4 +94,13 @@ public class SimpleAssignmentService implements AssignmentService{
             throw new ServiceException();
         }
     }
+
+    @Override
+    public boolean getIsSubmitted(int userId, int assignmentId) throws ServiceException {
+        try {
+            return assDao.isSubmitted(userId,assignmentId);
+        } catch (SQLException e) {
+            throw new ServiceException();
+        }
+    }
 }
