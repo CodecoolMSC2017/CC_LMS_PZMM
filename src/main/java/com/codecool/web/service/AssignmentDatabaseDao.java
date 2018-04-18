@@ -15,7 +15,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     @Override
     public List<Assignment> getAllAssignments() throws SQLException {
         List<Assignment> assignments = new ArrayList<>();
-        String sql = "SELECT id, name, percentage, creator_id FROM coupons";
+        String sql = "SELECT * FROM assignments";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
@@ -26,7 +26,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     }
 
     @Override
-    public Assignment addNewAssignment(String title, String question, int maxScore, boolean isDone, boolean isPublished) throws SQLException, EmptyFieldException {
+    public Assignment addNewAssignment(String title, String question, int maxScore, boolean isPublished) throws SQLException, EmptyFieldException {
         if (question.equals("") || title.equals("")) {
             throw new EmptyFieldException("Title cannot be empty");
         }
@@ -35,17 +35,16 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO assignments (title, question, max_score, is_done, is_published) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO assignments (title, question, max_score, is_published) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
             statement.setString(1, title);
             statement.setString(2, question);
             statement.setInt(3, maxScore);
-            statement.setBoolean(4, isDone);
-            statement.setBoolean(5, isPublished);
+            statement.setBoolean(4, isPublished);
             executeUpdate(statement);
             int id = fetchGeneratedId(statement);
             connection.commit();
-            return new Assignment(id, title, question, maxScore, isDone, isPublished);
+            return new Assignment(id, title, question, maxScore, isPublished);
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
@@ -87,13 +86,13 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
 
     @Override
     public void updateAssignmentTitleById(int id, String newTitle) throws EmptyFieldException, SQLException {
-        if (newTitle.equals("") || newTitle == null) {
+        if (newTitle.equals("")) {
             throw new EmptyFieldException("Title cannot be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "Update assignments Set title = ? where id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, newTitle);
             statement.setInt(2, id);
             executeUpdate(statement);
@@ -109,13 +108,13 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
 
     @Override
     public void updateAssignmentQuestionById(int id, String newQuestion) throws EmptyFieldException, SQLException {
-        if (newQuestion.equals("") || newQuestion == null) {
+        if (newQuestion.equals("")) {
             throw new EmptyFieldException("Title cannot be empty");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "Update assignments Set question = ? where id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, newQuestion);
             statement.setInt(2, id);
             executeUpdate(statement);
@@ -136,7 +135,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "update assignments set max_score=? where id= ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, score);
             statement.setInt(2, id);
             executeUpdate(statement);
@@ -151,28 +150,15 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
 
     @Override
     public void updateIsDoneById(int id, boolean isDone) throws SQLException {
-        boolean autoCommit = connection.getAutoCommit();
-        connection.setAutoCommit(false);
-        String sql = "update assignments set is_done=? where id= ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
-            statement.setBoolean(1, isDone);
-            statement.setInt(2, id);
-            executeUpdate(statement);
-            connection.commit();
-        } catch (SQLException ex) {
-            connection.rollback();
-            throw ex;
-        } finally {
-            connection.setAutoCommit(autoCommit);
-        }
+
     }
 
     @Override
     public void updateIsPublishedById(int id, boolean isPublished) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "update assignments set is_done=? where id= ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        String sql = "update assignments set is_done = ? where id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setBoolean(1, isPublished);
             statement.setInt(2, id);
             executeUpdate(statement);
@@ -186,13 +172,14 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     }
 
     @Override
-    public void add(int assignmentId, int userId) throws SQLException {
+    public void addToSubmittedAssignments(int assignmentId, int userId, String answer) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO users_assignments (user_id, assignment_id) VALUES (?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        String sql = "INSERT INTO users_assignments (user_id, assignment_id, answer) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, userId);
-            statement.setInt(2,assignmentId);
+            statement.setInt(2, assignmentId);
+            statement.setString(3, answer);
             executeUpdate(statement);
             connection.commit();
         } catch (SQLException ex) {
@@ -209,8 +196,49 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         String title = resultSet.getString("title");
         String question = resultSet.getString("question");
         int maxScore = resultSet.getInt("max_score");
-        boolean isDone = resultSet.getBoolean("is_done");
         boolean isPublished = resultSet.getBoolean("is_published");
-        return new Assignment(id, title, question, maxScore, isDone, isPublished);
+        return new Assignment(id, title, question, maxScore, isPublished);
+    }
+
+    @Override
+    public List<Assignment> getSubmittedAssignmentsById(int userId) throws SQLException {
+        List<Assignment> assignments = new ArrayList<>();
+        String sql = "SELECT * FROM assignments as ass " +
+            "JOIN users_assignments AS ua ON ua.assignment_id = ass.id " +
+            "WHERE ua.user_id = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    assignments.add(fetchAssignment(resultSet));
+                }
+            }
+        }
+        return assignments;
+    }
+
+    @Override
+    public List<Assignment> getUnSubmittedAssignmentsById(int userId) throws SQLException {
+        List<Assignment> assignments = new ArrayList<>();
+        String sql = "SELECT * FROM assignments" +
+            "WHERE assignments.id not in " +
+            "(SELECT ua.assignment_id " +
+            "FROM users_assignments AS ua " +
+            "WHERE ua.user_id = ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    assignments.add(fetchAssignment(resultSet));
+                }
+            }
+        }
+        return assignments;
+    }
+
+    @Override
+    public Assignment getAssignmentByUserId(int userId, int assignmentId) {
+        return null;
     }
 }
