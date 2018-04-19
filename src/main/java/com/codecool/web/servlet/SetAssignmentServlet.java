@@ -50,10 +50,9 @@ public class SetAssignmentServlet extends AbstractServlet {
                 resp.sendRedirect("assignmenteditmentor.jsp");
 
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ServiceException e) {
-            e.printStackTrace();
+        } catch (SQLException | ServiceException e) {
+            req.setAttribute("error", e.getMessage());
+            req.getRequestDispatcher("../errorpage.jsp").forward(req,resp);
         }
     }
 }
