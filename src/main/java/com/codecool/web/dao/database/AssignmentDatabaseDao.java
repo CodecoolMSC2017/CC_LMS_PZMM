@@ -32,10 +32,10 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     @Override
     public Assignment addNewAssignment(String title, String question, int maxScore, boolean isPublished) throws SQLException, EmptyFieldException {
         if (question.equals("") || title.equals("")) {
-            throw new EmptyFieldException("Title cannot be empty");
+            throw new EmptyFieldException("Title, and question cannot be empty!");
         }
         if (maxScore < 1 || maxScore > 100) {
-            throw new IllegalArgumentException("Maximum score should be between 1 and 100!");
+            throw new EmptyFieldException("Maximum score should be between 1 and 100!");
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
