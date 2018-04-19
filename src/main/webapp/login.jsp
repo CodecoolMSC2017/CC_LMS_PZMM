@@ -11,10 +11,10 @@
         <form class="login-form" action="login" method="post">
             <input type="text" placeholder="email" name="email"/>
             <input type="password" placeholder="password" name="password"/>
+            <input class="button" type="submit" value="Login"><br>
             <c:if test="${not empty error}">
                 <p style="color: red;"><c:out value="${error}"/></p>
             </c:if>
-            <input class="button" type="submit" value="Login"><br>
             <p class="message">Not registered? <a href="register.jsp"> Create an account</a></p>
         </form>
     </div>
