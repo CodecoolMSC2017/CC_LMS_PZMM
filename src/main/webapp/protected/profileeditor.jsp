@@ -38,9 +38,9 @@
                     <p>Email:<input type="text" name="email" value="${user.email}" readonly></p>
                     <p>Role:
                         <select name="role" id="role">
-                            <option selected disabled>${user.role}</option>
-                            <option value="student">Student</option>
-                            <option value="mentor">Mentor</option>
+                            <option selected disabled>Select your role</option>
+                            <option value="student">student</option>
+                            <option value="mentor">mentor</option>
                         </select><br></p>
                     <input class="button" type="submit" value="Save">
                     <c:if test="${not empty error}">
