@@ -13,7 +13,7 @@ public interface AssignmentService {
     HashMap<Assignment, String> getSubmittedAssignmentsByUserId(int userId) throws ServiceException;
     List<Assignment> getUnSubmittedAssignmentsByUserId(int userId) throws SQLException, ServiceException;
     Assignment addAssignment(String title,String question,int maxScore, boolean isPublished) throws SQLException, ServiceException;
-    Assignment getAssignment(int id) throws SQLException;
+    Assignment getAssignment(int id) throws SQLException, ServiceException;
     void updateAssignmentTitle(int id,String newTitle) throws SQLException, ServiceException;
     void updateAssignmentQuestion(int id,String newQuestion) throws SQLException, ServiceException;
     void updateMaxScore(int id,int score) throws SQLException, ServiceException;
