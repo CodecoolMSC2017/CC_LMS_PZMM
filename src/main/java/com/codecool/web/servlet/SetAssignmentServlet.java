@@ -29,11 +29,11 @@ public class SetAssignmentServlet extends AbstractServlet {
             AssignmentService  assignmentService = new SimpleAssignmentService(assignmentsDao);
            // Assignment selectedAssignment = (Assignment) session.getAttribute("selectedAssignment");
             String answer = assignmentService.getAnswerForAssignmentByUserId(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment")));
-            if(!assignmentService.getAssignment(Integer.parseInt(req.getParameter("assignment"))).isPublished()) {
-                resp.sendRedirect("index.jsp");
-                return;
-            }
             if (loggedInUser.getRole().equals("student")) {
+                if(!assignmentService.getAssignment(Integer.parseInt(req.getParameter("assignment"))).isPublished()) {
+                    resp.sendRedirect("index.jsp");
+                    return;
+                }
                 if (assignmentService.getIsSubmitted(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment")))) {
                     req.setAttribute("submittedAssignment", assignmentService.getAssignmentByIdForUser(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment"))));
                     req.setAttribute("answer", answer);
