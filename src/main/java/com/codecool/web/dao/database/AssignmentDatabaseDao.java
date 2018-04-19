@@ -156,7 +156,7 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
     public void updateIsPublishedById(int id, boolean isPublished) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "update assignments set is_done = ? where id = ?";
+        String sql = "update assignments set is_published = ? where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setBoolean(1, isPublished);
             statement.setInt(2, id);
