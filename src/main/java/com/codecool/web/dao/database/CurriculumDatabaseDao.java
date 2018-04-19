@@ -57,7 +57,7 @@ public class CurriculumDatabaseDao extends AbstractDao implements CurriculumDao 
 
     @Override
     public Curriculum getCurriculumById(int id) throws SQLException {
-        String sql = "SELECT id,title,content,is_published FROM curriculums WHERE title = ?;";
+        String sql = "SELECT id,title,content,is_published FROM curriculums WHERE id = ?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
