@@ -29,7 +29,7 @@ public class AssignmentEditorServlet extends AbstractServlet {
         }
     }
 
-    @Override
+        @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Assignment selectedAssignment = (Assignment) session.getAttribute("selectedAssignment");
@@ -38,6 +38,8 @@ public class AssignmentEditorServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             AssignmentDao assDao = new AssignmentDatabaseDao(connection);
             AssignmentService assignmentService = new SimpleAssignmentService((AssignmentDatabaseDao) assDao);
+            int selectedAssignmentId = selectedAssignment.getId();
+
             int assignmentId = selectedAssignment.getId();
             String newTitle = req.getParameter("title");
             String newQuestion = req.getParameter("question");
@@ -48,6 +50,8 @@ public class AssignmentEditorServlet extends AbstractServlet {
                 assignmentService.updateAssignmentQuestion(assignmentId, newQuestion);
                 assignmentService.updateMaxScore(assignmentId, Integer.parseInt(newMaxScore));
                 assignmentService.updateIsPublished(assignmentId, Boolean.parseBoolean(isPublished));
+                Assignment modifiedAssignment = assignmentService.getAssignment(selectedAssignmentId);
+                req.getSession().setAttribute("selectedAssignment", modifiedAssignment);
                 req.setAttribute("info", "Modification is done!");
             } catch (ServiceException e) {
                 req.setAttribute("error", "Invalid service operation!");
