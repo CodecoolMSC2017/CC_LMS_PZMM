@@ -45,10 +45,8 @@ public class SimpleAssignmentService implements AssignmentService {
     public Assignment addAssignment(String title, String question, int maxScore, boolean isPublished) throws SQLException, ServiceException {
         try {
             return assDao.addNewAssignment(title, question, maxScore, isPublished);
-        } catch (EmptyFieldException ex) {
-            throw new ServiceException("Title and question cannot be null!");
-        } catch (IllegalArgumentException ex) {
-            throw new ServiceException(ex.getMessage());
+        } catch (EmptyFieldException e) {
+            throw new ServiceException(e.getMessage());
         }
     }
 
