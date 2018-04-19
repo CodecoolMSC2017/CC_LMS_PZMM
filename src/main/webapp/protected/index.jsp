@@ -35,14 +35,14 @@
             <div class="three_third">
                 <h2>Curriculums:</h2>
                 <c:forEach items="${curriculums}" var="curriculum">
-                    <p><a href="../setCurriculum?curriculum=${curriculum.title}"><c:out value ="${curriculum.title}"/></a><br></p>
+                    <p><a href="../setCurriculum?curriculum=${curriculum.id}"><c:out value ="${curriculum.title}"/></a><br></p>
                 </c:forEach>
                 <c:if test="${user.role=='mentor'}">
                     <p><a href="newcurriculum.jsp">Create new curriculum</a></p>
                 </c:if>
                 <h2>Assignments:</h2>
                 <c:forEach items="${assignments}" var="assignment">
-                    <p><a href="../setAssignment?assignment=${assignment.title}"><c:out value ="${assignment.title}"/></a><br></p>
+                    <p><a href="../setAssignment?assignment=${assignment.id}"><c:out value ="${assignment.title}"/></a><br></p>
                 </c:forEach>
                 <c:if test="${user.role=='mentor'}">
                     <p><a href="newassignment.jsp">Create a new assignment</a></p>

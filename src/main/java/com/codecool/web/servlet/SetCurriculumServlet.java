@@ -25,10 +25,10 @@ public class SetCurriculumServlet extends AbstractServlet {
             CurriculumService curriculumService = new SimpleCurriculumService(curriculumDao);
             User loggedInUser = (User) session.getAttribute("user");
             if (loggedInUser.getRole().equals("student")) {
-                session.setAttribute("selectedCurriculum", curriculumService.getCurriculumByTitle(req.getParameter("curriculum")));
+                session.setAttribute("selectedCurriculum", curriculumService.getCurriculumById(Integer.parseInt(req.getParameter("curriculum"))));
                 resp.sendRedirect("protected/curriculum.jsp");
             } else {
-                session.setAttribute("selectedCurriculum", curriculumService.getCurriculumByTitle(req.getParameter("curriculum")));
+                session.setAttribute("selectedCurriculum", curriculumService.getCurriculumById(Integer.parseInt(req.getParameter("curriculum"))));
                 resp.sendRedirect("protected/curriculumedit.jsp");
             }
         } catch (SQLException e) {
