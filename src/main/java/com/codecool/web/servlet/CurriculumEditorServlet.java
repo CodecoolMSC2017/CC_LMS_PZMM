@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.CurriculumDao;
 import com.codecool.web.dao.database.CurriculumDatabaseDao;
+import com.codecool.web.model.Assignment;
 import com.codecool.web.model.Curriculum;
 import com.codecool.web.service.*;
 import com.codecool.web.service.exception.EmptyFieldException;
@@ -28,6 +29,8 @@ public class CurriculumEditorServlet extends AbstractServlet {
             CurriculumService cs = new SimpleCurriculumService(curriculumDao);
             cs.updateCurriculumTitle(selectedCurriculum, req.getParameter("title"));
             cs.updateContent(selectedCurriculum, req.getParameter("content"));
+            Curriculum modifiedCurriculum = cs.getCurriculumById(selectedCurriculum.getId());
+            req.getSession().setAttribute("selectedCurriculum", modifiedCurriculum);
             if (req.getParameter("isPublished") != null) {
                 cs.updateIsPublished(selectedCurriculum, true);
             } else {
