@@ -52,8 +52,12 @@ public class SimpleAssignmentService implements AssignmentService {
 
 
     @Override
-    public Assignment getAssignment(int id) throws SQLException {
-        return assDao.getAssignmentById(id);
+    public Assignment getAssignment(int id) throws SQLException, ServiceException {
+        Assignment assignment = assDao.getAssignmentById(id);
+        if (assignment == null) {
+            throw new ServiceException("No such assignment!");
+        }
+        return assignment;
     }
 
     @Override
@@ -90,11 +94,16 @@ public class SimpleAssignmentService implements AssignmentService {
 
     @Override
     public Assignment getAssignmentByIdForUser(int userId, int assignmentId) throws ServiceException {
+        Assignment assignment;
         try {
-            return assDao.getAssignmentByIdForUser(userId,assignmentId);
+            assignment = assDao.getAssignmentByIdForUser(userId,assignmentId);
+            if (assignment == null) {
+                throw new ServiceException("No such assignment!");
+            }
         } catch (SQLException e) {
             throw new ServiceException();
         }
+        return assignment;
     }
 
     @Override
