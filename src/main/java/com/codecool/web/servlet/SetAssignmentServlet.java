@@ -2,6 +2,7 @@ package com.codecool.web.servlet;
 
 import com.codecool.web.dao.AssignmentDao;
 import com.codecool.web.dao.database.AssignmentDatabaseDao;
+import com.codecool.web.model.Assignment;
 import com.codecool.web.model.User;
 import com.codecool.web.service.*;
 import com.codecool.web.service.exception.ServiceException;
@@ -25,10 +26,13 @@ public class SetAssignmentServlet extends AbstractServlet {
             //AssignmentDao assignmentDao = (AssignmentDao) req.getServletContext().getAttribute("assignmentService");
             User loggedInUser = (User) session.getAttribute("user");
             AssignmentDao assignmentsDao = new AssignmentDatabaseDao(connection);
-            AssignmentService  assignmentService= new SimpleAssignmentService(assignmentsDao);
+            AssignmentService  assignmentService = new SimpleAssignmentService(assignmentsDao);
+            String answer = assignmentService.getAnswerForAssignmentByUserId(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment")));
             if (loggedInUser.getRole().equals("student")) {
                 if (assignmentService.getIsSubmitted(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment")))) {
-                    session.setAttribute("selectedAssignment", assignmentService.getAssignmentByIdForUser(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment"))));
+                    req.setAttribute("submittedAssignment", assignmentService.getAssignmentByIdForUser(loggedInUser.getId(), Integer.parseInt(req.getParameter("assignment"))));
+                    req.setAttribute("answer", answer);
+                    req.getRequestDispatcher("submittedassignment.jsp").forward(req,resp);
                 } else {
                     session.setAttribute("selectedAssignment", assignmentService.getAssignment(Integer.parseInt(req.getParameter("assignment"))));
                 }
@@ -37,7 +41,7 @@ public class SetAssignmentServlet extends AbstractServlet {
             } else {
                 session.setAttribute("selectedAssignment", assignmentService.getAssignment(Integer.parseInt(req.getParameter("assignment"))));
                 //req.getRequestDispatcher("protected/assignmenteditmentor.jsp").forward(req, resp);
-                resp.sendRedirect("protected/assignmenteditmentor.jsp");
+                resp.sendRedirect("assignmenteditmentor.jsp");
 
             }
         } catch (SQLException e) {
