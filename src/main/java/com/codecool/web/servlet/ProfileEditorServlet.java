@@ -21,6 +21,7 @@ public class ProfileEditorServlet extends AbstractServlet {
         try (Connection connection = getConnection(req.getServletContext())) {
             UserDao userDao = new DatabaseUserDao(connection);
             User user = userDao.getUserByEmail(sessionUser.getEmail());
+            req.getSession().setAttribute("user", user);
             req.setAttribute("user", user);
         } catch (SQLException e) {
             throw new ServletException();

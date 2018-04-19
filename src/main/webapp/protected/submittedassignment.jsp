@@ -6,6 +6,7 @@
 <head>
     <title>${selectedAssignment.title}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <jsp:include page="/submissionServlet" />
     <link rel="stylesheet" type="text/css" href="../layout.css">
     <script src="../html5shiv.js"></script>
 </head>
@@ -32,30 +33,15 @@
     <div id="container">
         <section class="last clear">
             <div class="three_third">
-            <table>
-                <td>
-                <tr><h2>Title: ${selectedAssignment.title}</h2></tr>
-                <tr><p>Maximum score: ${selectedAssignment.maxScore}</p></tr>
-                <tr><p>Question: ${selectedAssignment.question}</p></tr>
-                <tr><p>Answer: </p></tr>
-                    <form action="../SubmitAssignmentServlet" method="post">
-                        <c:if test="${done}">
-                            <textarea rows="4" cols="50" name="answer" readonly>${selectedAssignment.answer}</textarea>
-                        </c:if>
-                        <c:if test="${not done}">
-                            <textarea rows="4" cols="50" name="answer"></textarea>
-                        </c:if>
-                        <c:choose>
-                            <c:when test = "${not done}"><br>
-                                <input class="button" type="submit" value="Submit">
-                            </c:when>
-                            <c:otherwise>
-                                <p style="color:red;">You already published this assignment!</p>
-                            </c:otherwise>
-                        </c:choose>
-                    </form>
-                </td>
-            </table>
+                <table>
+                    <td>
+                        <tr><h2>Title: ${submittedAssignment.title}</h2></tr>
+                        <tr><p>Maximum score: ${submittedAssignment.maxScore}</p></tr>
+                        <tr><p>Question: ${submittedAssignment.question}</p></tr>
+                        <tr><p>Answer: ${answer} </p></tr>
+
+                    </td>
+                </table>
 
             </div>
         </section>
