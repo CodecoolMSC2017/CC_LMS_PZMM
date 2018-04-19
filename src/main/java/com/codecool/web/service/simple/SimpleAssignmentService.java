@@ -116,4 +116,13 @@ public class SimpleAssignmentService implements AssignmentService {
             throw new ServiceException();
         }
     }
+
+    @Override
+    public String getAnswerForAssignmentByUserId(int userId, int assignmentId) throws ServiceException {
+        try {
+            return assDao.getAnswerForAssignmentByUserId(userId, assignmentId);
+        } catch (SQLException e) {
+            throw new ServiceException();
+        }
+    }
 }

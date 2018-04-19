@@ -21,6 +21,7 @@ public interface AssignmentService {
     Assignment getAssignmentByIdForUser(int userId,int assignmentId) throws ServiceException;
     boolean getIsSubmitted(int userId, int assignmentId) throws ServiceException;
     void addToSubmissions(int assignmentId, int userId, String answer) throws ServiceException;
+    String getAnswerForAssignmentByUserId(int userId, int assignmentId) throws ServiceException;
 
 
 }
