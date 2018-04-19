@@ -30,8 +30,8 @@ public class SimpleCurriculumService implements CurriculumService {
     }
 
     @Override
-    public Curriculum getCurriculumByTitle(String title) throws SQLException {
-        return curriculumDao.getCurriculumByTitle(title);
+    public Curriculum getCurriculumById(int id) throws SQLException {
+        return curriculumDao.getCurriculumById(id);
     }
 
     @Override
