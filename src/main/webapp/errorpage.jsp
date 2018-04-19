@@ -32,15 +32,6 @@
     <div id="container">
         <section class="last clear">
             <div class="three_third">
-                <table>
-                    <td>
-                        <tr><h2>Title: ${submittedAssignment.title}</h2></tr>
-                        <tr><p>Maximum score: ${submittedAssignment.maxScore}</p></tr>
-                        <tr><p>Question: ${submittedAssignment.question}</p></tr>
-                        <tr><p>Answer: ${answer} </p></tr>
-
-                    </td>
-                </table>
                 <c:if test="${not empty error}">
                     <p style="color: red;"><c:out value="${error}"/></p>
                 </c:if>
