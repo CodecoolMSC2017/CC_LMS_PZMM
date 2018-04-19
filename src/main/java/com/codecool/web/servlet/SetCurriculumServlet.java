@@ -24,6 +24,10 @@ public class SetCurriculumServlet extends AbstractServlet {
             CurriculumDao curriculumDao = new CurriculumDatabaseDao(connection);
             CurriculumService curriculumService = new SimpleCurriculumService(curriculumDao);
             User loggedInUser = (User) session.getAttribute("user");
+            if(!curriculumService.getCurriculumById(Integer.parseInt(req.getParameter("curriculum"))).isPublished()) {
+                resp.sendRedirect("index.jsp");
+                return;
+            }
             if (loggedInUser.getRole().equals("student")) {
                 session.setAttribute("selectedCurriculum", curriculumService.getCurriculumById(Integer.parseInt(req.getParameter("curriculum"))));
                 resp.sendRedirect("protected/curriculum.jsp");

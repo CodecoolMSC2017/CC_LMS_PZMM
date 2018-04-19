@@ -35,7 +35,7 @@ class CurriculumDatabaseDaoTest {
         String sql = "DROP TABLE IF EXISTS curriculums;";
         Statement statement = connection.createStatement();
         statement.executeUpdate(sql);
-        String sqlinit = "CREATE TABLE public.curriculums (\n" +
+        String sqlinit = "CREATE TABLE curriculums (" +
             "    id serial PRIMARY KEY,\n" +
             "    title text NOT NULL,\n" +
             "    content text NOT NULL,\n" +
