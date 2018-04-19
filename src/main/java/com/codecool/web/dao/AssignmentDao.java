@@ -24,4 +24,5 @@ public interface AssignmentDao {
     public List<Assignment> getUnSubmittedAssignmentsById(int userId) throws SQLException;
     public Assignment getAssignmentByIdForUser(int userId, int assignmentId) throws SQLException;
     public boolean isSubmitted(int userId, int assignmentId) throws SQLException;
+    public String getAnswerForAssignmentByUserId(int userId, int assignmentId) throws SQLException;
 }
