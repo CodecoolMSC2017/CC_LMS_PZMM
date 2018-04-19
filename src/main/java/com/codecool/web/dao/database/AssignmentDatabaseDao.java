@@ -272,4 +272,21 @@ public final class AssignmentDatabaseDao extends AbstractDao implements Assignme
         }
         return isSubmitted;
     }
+
+    @Override
+    public String getAnswerForAssignmentByUserId(int userId, int assignmentId) throws SQLException {
+        String sql = "SELECT answer from users_assignments AS ua " +
+            "WHERE ua.user_id = ? AND ua.assignment_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, userId);
+            statement.setInt(2, assignmentId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("answer");
+                }
+
+            }
+            return null;
+        }
+    }
 }
