@@ -38,21 +38,9 @@
                 <tr><p>Maximum score: ${selectedAssignment.maxScore}</p></tr>
                 <tr><p>Question: ${selectedAssignment.question}</p></tr>
                 <tr><p>Answer: </p></tr>
-                    <form action="../SubmitAssignmentServlet" method="post">
-                        <c:if test="${done}">
-                            <textarea rows="4" cols="50" name="answer" readonly>${selectedAssignment.answer}</textarea>
-                        </c:if>
-                        <c:if test="${not done}">
-                            <textarea rows="4" cols="50" name="answer"></textarea>
-                        </c:if>
-                        <c:choose>
-                            <c:when test = "${not done}"><br>
-                                <input class="button" type="submit" value="Submit">
-                            </c:when>
-                            <c:otherwise>
-                                <p style="color:red;">You already published this assignment!</p>
-                            </c:otherwise>
-                        </c:choose>
+                    <form action="SubmitAssignmentServlet" method="post">
+                        <textarea rows="4" cols="50" name="answer"></textarea>
+                        <input class="button" type="submit" value="Submit">
                     </form>
                 </td>
             </table>

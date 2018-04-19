@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/setAssignment")
+@WebServlet("/protected/setAssignment")
 public class SetAssignmentServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,9 +35,10 @@ public class SetAssignmentServlet extends AbstractServlet {
                     req.getRequestDispatcher("submittedassignment.jsp").forward(req,resp);
                 } else {
                     session.setAttribute("selectedAssignment", assignmentService.getAssignment(Integer.parseInt(req.getParameter("assignment"))));
+                    resp.sendRedirect("assignment.jsp");
                 }
                 // req.getRequestDispatcher("protected/assignment.jsp").forward(req, resp);
-                resp.sendRedirect("protected/assignment.jsp");
+
             } else {
                 session.setAttribute("selectedAssignment", assignmentService.getAssignment(Integer.parseInt(req.getParameter("assignment"))));
                 //req.getRequestDispatcher("protected/assignmenteditmentor.jsp").forward(req, resp);

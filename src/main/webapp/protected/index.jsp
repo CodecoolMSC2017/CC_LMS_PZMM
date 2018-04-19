@@ -42,7 +42,7 @@
                 </c:if>
                 <h2>Assignments:</h2>
                 <c:forEach items="${assignments}" var="assignment">
-                    <p><a href="../setAssignment?assignment=${assignment.id}"><c:out value ="${assignment.title}"/></a><br></p>
+                    <p><a href="setAssignment?assignment=${assignment.id}"><c:out value ="${assignment.title}"/></a><br></p>
                 </c:forEach>
                 <c:if test="${user.role=='mentor'}">
                     <p><a href="newassignment.jsp">Create a new assignment</a></p>

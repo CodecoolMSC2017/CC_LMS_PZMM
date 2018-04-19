@@ -6,7 +6,6 @@
 <head>
     <title>${selectedAssignment.title}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <jsp:include page="/submissionServlet" />
     <link rel="stylesheet" type="text/css" href="../layout.css">
     <script src="../html5shiv.js"></script>
 </head>

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/SubmitAssignmentServlet")
+@WebServlet("/protected/SubmitAssignmentServlet")
 public class SubmitAssignmentServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +36,7 @@ public class SubmitAssignmentServlet extends AbstractServlet {
             //Assignment assignment = new Assignment(question, title, maxScore, true, isSubmitted);
             //assignment.setAnswer(answer);
             assignmentService.addToSubmissions(selectedAssignment.getId(),loggedInUser.getId(),answer);
-            resp.sendRedirect("protected/index.jsp");
+            resp.sendRedirect("index.jsp");
 
         } catch (SQLException e) {
             e.printStackTrace();
